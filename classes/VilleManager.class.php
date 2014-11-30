@@ -7,7 +7,8 @@ class VilleManager{
 	{
 		$this->db = $db;
 	}
-
+	
+	//OK
 	public function add($ville)
 	{
 		$requete = $this->db->prepare(
@@ -18,6 +19,7 @@ class VilleManager{
 		return $retour;
 	}
 	
+	//OK
 	public function getAllVille()
 	{
 		$listeVille = array(); //tableau d'objet
@@ -34,7 +36,7 @@ class VilleManager{
 		$requete->closeCursor();
 	}
 	
-	// A REFAIRE
+	// A TESTER
 	public function getNbVille()
 	{
 		$sql = 'SELECT * FROM VILLE';
@@ -49,6 +51,7 @@ class VilleManager{
 		
 	}
 	
+	// OK
 	public function getNomVille($numVille)
 	{
 		$sql = 'SELECT vil_nom FROM VILLE where vil_num='.$numVille.'';

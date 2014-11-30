@@ -23,7 +23,6 @@ class Fonction{
 		}
 	}
 	
-	//GETTER - SETTER 
 	public function getFonNum()
 	{
 		return $this->fon_num;

@@ -23,7 +23,6 @@ class Division{
 		}
 	}
 	
-	//GETTER - SETTER 
 	public function setDivNum($div_num)
 	{
 		$this->div_num = $div_num;

@@ -16,6 +16,10 @@ class FonctionManager{
 		return $retour;
 	}
 	
+	public function __construct($db) {
+		$this->db=$db;
+	}
+	
 	public function getAllFonctions()
 	{
 		$listeFonction = array(); //tableau d'objet
@@ -29,6 +33,26 @@ class FonctionManager{
 		}
 		return $listeFonction;
 		$requete->closeCursor();
+	}
+	
+	// Pour obtenir une fonction en particulier
+	public function getDetailsFonction($idFonction) 
+	{
+		$sql = 'SELECT fon_num, fon_libelle FROM FONCTION WHERE fon_num='.$idFonction.'';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		if ($resultat != null)
+		{
+			return $resultat;
+			// on retourne un objet !!
+		}
+		else
+		{
+			//Fonction demandée non trouvée
+			return null;
+		}
 	}
 }
 ?>	

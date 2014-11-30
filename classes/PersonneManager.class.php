@@ -44,9 +44,9 @@ class PersonneManager{
 	public function modifierPersonne($personne)
 	{
 		$requete = $this->db->prepare(
-		'UPDATE personne SET per_prenom= \':prenom\', per_nom=\':nom\', 
-		per_tel=\':tel\', per_mail=\':mail\', 
-		per_pwd=\':pwd\', per_login=\':login\' 
+		'UPDATE personne SET per_prenom= '':prenom'', per_nom'':nom'', 
+		per_tel='':tel'', per_mail='':mail'', 
+		per_pwd='':pwd'', per_login='':login'' 
 		WHERE per_num = :per_num');
 		
 		$requete->bindValue(':nom',$personne->getNomPersonne());
@@ -55,11 +55,12 @@ class PersonneManager{
 		$requete->bindValue(':mail',$personne->getPerMail());
 		$requete->bindValue(':login',$personne->getPerLogin());
 		$requete->bindValue(':pwd',$personne->getPerPwd());
-		//GERER LE TYPE DE PERSONNE 
+		// POUR GERER LE TYPE DE PERSONNE 
+		// Reprendre comme l'ajout d'une personne, c'est à dire diviser en deux requete, une pour la personne, et une pour l'étudiant/salarié
 		$requete->bindValue(':per_num', $personne->getPerNum()); //permet de modifier la bonne personne
 		
 		$retour = $requete->execute();
-		return $retour;	
+		return $personne->getPerNum(); //pour récupérer l'id de l'étudiant/salarié à modifier
 	}
 	
 	public function supprimerPersonne($personne) 
@@ -72,16 +73,6 @@ class PersonneManager{
 		$retour = $requete->execute();
 		return $retour;	
 	}
-	
-	/* public function getDernierePersonneAjoutee() 
-	{
-		$sql = 'SELECT * FROM PERSONNE WHERE per_num = '.$this->db->lastInsertId();
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		$resultat=$requete->fetch(PDO::FETCH_OBJ);
-		$requete->closeCursor();
-		return $resultat;
-	} */
 	
 	// Incomplet
 	//CF EN BAS

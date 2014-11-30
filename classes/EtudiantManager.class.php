@@ -1,5 +1,6 @@
 <?php
-class EtudiantManager{
+class EtudiantManager
+{
 	private $db;
 	
 	public function __construct($db)
@@ -8,17 +9,35 @@ class EtudiantManager{
 	}
 
 	//$etudiant, c'est un objet de type etudiant qu'on va lui passer
-	public function add($etudiant)
+	//$id, c'est l'id de la personne ajoutée, qui va servir à faire le lien.
+	// A TESTER, PAS GARANTI QUE CA MARCHE
+	public function add($etudiant, $idPersonne)
 	{
 		$requete = $this->db->prepare(
-		'INSERT INTO etudiant (per_num, dep_num, div_num ) VALUES (
+		'INSERT INTO ETUDIANT (per_num, dep_num, div_num ) VALUES (
 		:per_num, :dep_num, :div_num;');
 		//(SELECT per_num FROM personne WHERE per_num = pdo.lastInsertId()), :dep, :div);');
-		$requete->bindValue(':per_num',$etudiant->getPerNum());
+		$requete->bindValue(':per_num',$idPersonne);
 		$requete->bindValue(':dep_num',$etudiant->getDepNum());
 		$requete->bindValue(':div_num',$etudiant->getDivNum());
 		
 		$retour = $requete->execute();
 		return $retour;
 	}	
+	
+	public function getAllEtudiant() 
+	{
+		$listeEtudiants = array(); //tableau d'objet
+		
+		$sql='SELECT per_num, dep_num, div_num FROM ETUDIANT ORDER BY per_num';
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		
+		while($etudiant=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeEtudiants[]=new Etudiant($etudiant);
+		}
+		$requete->closeCursor();
+		return $listeEtudiants;
+	}
 }

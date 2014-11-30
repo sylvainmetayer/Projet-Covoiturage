@@ -6,6 +6,7 @@ class DivisionManager{
 		$this->db = $db;
 	}
 
+	// A TESTER
 	public function add($division)
 	{
 		$requete = $this->db->prepare(
@@ -18,6 +19,7 @@ class DivisionManager{
 		return $retour;
 	}
 	
+	// A TESTER
 	public function getAllDivisions()
 	{
 		$listeDivision = array(); //tableau d'objet

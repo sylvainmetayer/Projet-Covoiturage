@@ -8,6 +8,7 @@ class DepartementManager{
 		$this->db = $db;
 	}
 
+	// A TESTER
 	public function add($departement)
 	{
 		$requete = $this->db->prepare(
@@ -19,6 +20,7 @@ class DepartementManager{
 		return $retour;
 	}
 	
+	// A TESTER
 	public function getAllDepartements()
 	{
 		$listeDepartement = array(); //tableau d'objet
