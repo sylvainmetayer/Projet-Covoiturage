@@ -34,6 +34,27 @@ class DepartementManager{
 		}
 		return $listeDepartement;
 		$requete->closeCursor();
-}
+	}
+	
+	// Pour obtenir un departement en particulier
+	// A TESTER
+	public function getDetailsDepartement($idDepartement) 
+	{
+		$sql = 'SELECT dep_num, dep_nom, vil_num FROM DEPARTEMENT WHERE dep_num='.$idDepartement.'';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		if ($resultat != null)
+		{
+			return $resultat;
+			// on retourne un objet !!
+		}
+		else
+		{
+			//Departement demandé non trouvée
+			return null;
+		}
+	}
 }
 ?>

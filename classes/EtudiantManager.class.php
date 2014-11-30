@@ -25,6 +25,7 @@ class EtudiantManager
 		return $retour;
 	}	
 	
+	// A TESTER
 	public function getAllEtudiant() 
 	{
 		$listeEtudiants = array(); //tableau d'objet

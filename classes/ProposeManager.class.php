@@ -6,6 +6,7 @@ class ProposeManager{
 		$this->db=$db;
 	}
 	
+	// A TESTER
 	public function add($propose) {
 		$requete = $this->db->prepare (
 		'INSERT INTO PROPOSE (par_num, per_num, pro_date, pro_time, pro_place, pro_sens) VALUES (:par_num, :per_num , :pro_date, :pro_time, :pro_place, :pro_sens);');
@@ -20,6 +21,7 @@ class ProposeManager{
 		return $retour;
 	}
 	
+	// A TESTER
 	public function getAllPropose() {
 		$listePropose = array();
 		

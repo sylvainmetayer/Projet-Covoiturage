@@ -34,4 +34,25 @@ class DivisionManager{
 		return $listeDivision;
 		$requete->closeCursor();
 	}
+	
+	// Pour obtenir une division en particulier
+	// A TESTER
+	public function getDetailsDivision($idDivision) 
+	{
+		$sql = 'SELECT div_num, div_nom FROM DIVISION WHERE div_num='.$idDivision.'';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+		if ($resultat != null)
+		{
+			return $resultat;
+			// on retourne un objet !!
+		}
+		else
+		{
+			//Division demandée non trouvée
+			return null;
+		}
+	}
 }

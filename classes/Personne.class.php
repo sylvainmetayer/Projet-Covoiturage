@@ -34,7 +34,6 @@ class Personne{
 		}
 	}
 	
-	//GETTER - SETTER
 	public function setNomPersonne($per_nom)
 	{
 		$this->per_nom = $per_nom;

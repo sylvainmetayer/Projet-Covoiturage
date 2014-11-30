@@ -8,6 +8,7 @@ class PersonneManager{
 	}
 	
 	//Cette fonction va ajouter une personne, puis retourner l'id de la personne ajouté, ce qui permettra de faire l'ajout de l'étudiant/salarié
+	// A TESTER
 	public function add($personne)
 	{
 		$requete = $this->db->prepare(
@@ -25,6 +26,7 @@ class PersonneManager{
 		//Pour ajouter par la suite un etudiant/salarié
 	}
 	
+	// A TESTER
 	public function getAllPersonne()
 	{
 		$listePersonne = array();
@@ -40,7 +42,7 @@ class PersonneManager{
 		}
 	}
 	
-	//TODO
+	// A TESTER
 	public function modifierPersonne($personne)
 	{
 		$requete = $this->db->prepare(
@@ -63,6 +65,7 @@ class PersonneManager{
 		return $personne->getPerNum(); //pour récupérer l'id de l'étudiant/salarié à modifier
 	}
 	
+	// A TESTER
 	public function supprimerPersonne($personne) 
 	{
 		$requete = $this->db->prepare(

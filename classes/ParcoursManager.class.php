@@ -39,7 +39,7 @@ class ParcoursManager{
 		return $retour;
 	}
 
-	// NORMALEMENT OK, A TESTER
+	// A TESTER
 	public function getVilNum1et2VerifParcours($vil_num1, $vil_num2) 
 	{
 		//On selectionne tous les parcours ayant pour départ vil_num1 et arrivée vil_num2
@@ -64,7 +64,7 @@ class ParcoursManager{
 		}
 	}
 	
-	//INCOMPLET
+	// A FAIRE
 	public function getAllParcours()
 	{
 		$listeParcours = array(); //tableau d'objet
