@@ -46,9 +46,9 @@ class PersonneManager{
 	public function modifierPersonne($personne)
 	{
 		$requete = $this->db->prepare(
-		'UPDATE personne SET per_prenom= '':prenom'', per_nom'':nom'', 
-		per_tel='':tel'', per_mail='':mail'', 
-		per_pwd='':pwd'', per_login='':login'' 
+		'UPDATE personne SET per_prenom= \':prenom\', per_nom\':nom\', 
+		per_tel=\':tel\', per_mail=\':mail\', 
+		per_pwd=\':pwd\', per_login=\':login\' 
 		WHERE per_num = :per_num');
 		
 		$requete->bindValue(':nom',$personne->getNomPersonne());
