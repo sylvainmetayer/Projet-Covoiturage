@@ -128,18 +128,4 @@ class PersonneManager{
 		$listePersonne->closeCursor();
 		return $listePersonne;
 	}
-	
-	// A TESTER
-	public function getNbPersonnes()
-	{
-		$sql = 'SELECT * FROM PERSONNE';
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		while ($personne = $requete->fetch(PDO::FETCH_OBJ))
-		{
-			$sql = $sql +1;
-		}
-		$requete->closeCursor();
-		return $sql;	
-	}
 }

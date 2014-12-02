@@ -80,18 +80,4 @@ class ParcoursManager{
 		return $listeParcours;
 		$requete->closeCursor();
 	}
-	
-	// A TESTER
-	public function getNbParcours()
-	{
-		$sql = 'SELECT * FROM PARCOURS';
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		while ($nb_parcours = $requete->fetch(PDO::FETCH_OBJ))
-		{
-			$sql = $sql +1;
-		}
-		$requete->closeCursor();
-		return $sql;
-	}
 }

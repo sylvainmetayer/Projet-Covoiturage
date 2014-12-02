@@ -36,21 +36,6 @@ class VilleManager{
 		$requete->closeCursor();
 	}
 	
-	// A TESTER
-	public function getNbVille()
-	{
-		$sql = 'SELECT * FROM VILLE';
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-		while ($nom_vil = $requete->fetch(PDO::FETCH_OBJ))
-		{
-			$sql = $sql +1;
-		}
-		$requete->closeCursor();
-		return $sql;
-		
-	}
-	
 	// OK
 	public function getNomVille($numVille)
 	{

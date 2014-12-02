@@ -7,7 +7,7 @@
 	<h1>Liste des villes</h1>
 	
 	<p>Actuellement, il y a 
-	<?php echo $villeManager->getNbVille(); ?> 
+	<?php echo count($villes); ?> 
 	villes enregistrées
 	</p>
 </div>

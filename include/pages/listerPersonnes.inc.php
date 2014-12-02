@@ -4,7 +4,7 @@ $personneManager = new PersonneManager($pdo);
 $personnes=$personneManager->getAllPersonnes();
 ?>
 <div><h1>Liste des personnes</h1></div>
-<?php echo "Actuellement ".$personneManager->getNbPersonnes()." personnes sont enregistrées\n"; ?>
+<?php echo "Actuellement ".count($personnes)." personnes sont enregistrées\n"; ?>
 <br/>
 <br/>
 <center>
