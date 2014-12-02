@@ -87,6 +87,49 @@ class PersonneManager {
 		$requete->closeCursor();
 	}
 	
+	public function getPersonneParLogin($login) {
+		$sql = "SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_login=:login";
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':login', $login);
+	
+		$nbLignes = $requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+	
+		if ($resultat != null)
+		{
+			var_dump($resultat);
+			return $resultat;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	//Pour la connexion
+	public function testConnexion($login, $mdp)
+	{
+		//$sale = sha1( sha1($mdp) . SEL ); le grain de sel, a voir plus tard.
+	
+		$sql= "SELECT per_login FROM personne WHERE per_login=:login AND per_pwd=:mdp";
+	
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':login', $login);
+		//$requete->bindValue(':mdp', $sale);
+		$requete->bindValue(':mdp', $mdp);
+		
+		$requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+	
+		if($resultat != NULL) 
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	// Incomplet
 	// CF EN BAS
 	public function getDetailsEtudiant($personne) {
