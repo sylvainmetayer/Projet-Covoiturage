@@ -9,7 +9,7 @@
 	$PersonneManager = new PersonneManager($pdo);
 	$SalarieManager = new SalarieManager($pdo);
 	$EtudiantManager = new EtudiantManager($pdo);
-	$_SESSION['formulaire_saisiePersonne']='';
+	//$_SESSION['Personne']='';
 ?>	
 
 <?php
@@ -23,11 +23,12 @@ or empty($_POST['mail'])
 or empty($_POST['login']) 
 or empty($_POST['mdp']) 
 or (empty($_POST['typePersonne'])) */
-( empty($_POST['ajouter_personne']) )
+( empty($_POST['nom']) )
 and
-empty($_SESSION['formulaire_saisiePersonne'])
+empty($_SESSION['Personne'])
 )
 {
+
 ?>
 	<h1>Ajouter une personne</h1>
 	
@@ -52,23 +53,23 @@ empty($_SESSION['formulaire_saisiePersonne'])
 	</div>
 <?php
 } else if ( 
-!empty($_POST['ajouter_personne'] )
+!empty($_POST['nom'] )
 and
-empty($_SESSION['formulaire_saisiePersonne']) 
+empty($_SESSION['Personne']) 
 )
 {
 	//Dans ce cas, le formulaire de saisie de la personne est rempli.
 	
-	$_SESSION['prenom'] = $_POST['prenom'];
-	$_SESSION['nom'] = $_POST['nom'];
-	$_SESSION['tel'] = $_POST['tel'];
-	$_SESSION['mail'] = $_POST['mail'];
-	$_SESSION['login'] = $_POST['login'];
-	$_SESSION['mdp'] = $_POST['mdp'];
-	//Détails de la personne	
-	
-	$_SESSION['formulaire_saisiePersonne'] = $_POST['ajouter_personne'];
-	//pour les conditions
+	//Details de la personne stockée dans une variable de session
+	$Personne = new Personne(array(
+		'per_nom' => $_POST['nom'], 
+		'per_prenom' => $_POST['prenom'], 
+		'per_tel' => $_POST['tel'], 
+		'per_mail' => $_POST['mail'], 
+		'per_login' => $_POST['login'],
+		'per_pwd' => $_POST['mdp'],
+		));
+	$_SESSION['Personne'] = $Personne;
 	
 	$_SESSION['typePersonne'] = $_POST['typePersonne'];
 	//Si la personne est un etudiant ou un salarié, peut-être inutile.
@@ -77,7 +78,7 @@ empty($_SESSION['formulaire_saisiePersonne'])
 	//On utilise les $_POST afin de s'assurer que c'est juste la page précédente.
 	
 	if ($_POST['typePersonne']=='personnel')
-	{ 
+	{
 		//On génère la page pour la saisie d'un salarié
 ?>
 		<h1>Ajouter un salarié</h1>
@@ -89,7 +90,6 @@ empty($_SESSION['formulaire_saisiePersonne'])
 				
 				Fonction :
 				<select name=choix_fonction class='champ'> 
-					<option>Choissisez votre fonction</option>
 					<?php
 					//Listage de toutes les fonctions
 					$pdo = new MyPdo();
@@ -119,7 +119,6 @@ empty($_SESSION['formulaire_saisiePersonne'])
 			<form name='ajouter_etudiant' id='ajouter_etudiant' action='#' method='post'>
 				Année :
 				<select name=choix_annee class='champ'> 
-					<option>Choissisez votre année</option>
 					<?php
 					//Listage de toutes les années
 					$pdo = new MyPdo();
@@ -142,7 +141,7 @@ empty($_SESSION['formulaire_saisiePersonne'])
 					$pdo = new MyPdo();
 					$departementManager = new DepartementManager($pdo);
 					$departements = $departementManager->getAllDepartements();
-					var_dump($departements);
+					//var_dump($departements);
 					foreach ($departements as $departement) 
 					{ 
 						?>
@@ -159,58 +158,55 @@ empty($_SESSION['formulaire_saisiePersonne'])
 			</form>
 		</div>
 		<?php
-	} else 
+	} 
+}
+	if ( !empty($_SESSION['Personne']) and ( !empty($_POST['choix_annee']) or !empty($_POST['tel_pro']) ) )
 	{
 		// NORMALEMENT !!!!!!!!!!!!!!!! A TESTER
 		//TODO
 		//Dans ce cas, le formulaire d'une personne est complet, dans les $_SESSION, et soit le salarie, soit l'etudiant est dans le $_POST
 
 		//On va ajouter une personne
-		$Personne = new Personne(array(
-		'per_nom' => $nom, 
-		'per_prenom' => $prenom, 
-		'per_tel' => $tel, 
-		'per_mail' => $mail, 
-		'per_login' => $login,
-		'per_pwd' => $mdp,
-		));
-		var_dump($Personne);
-		$idPersonne = $PersonneManager->add($Personne);
+		//var_dump($_SESSION['Personne']);
+		$idPersonne = $PersonneManager->add($_SESSION['Personne']);
+		//var_dump($idPersonne);
 		
 		if ($_SESSION['typePersonne']=='etudiant')
 		{
-			//On va ajouter l'étudiant, et afficher le message comme quoi la personne est ajoutée. 
+			//On va ajouter l'étudiant
 			
 			//TODO 
+			$etudiant = new Etudiant(array(
+			'dep_num' => $_POST['choix_departement'],
+			'div_num' => $_POST['choix_departement'],
+			));
+			$retour = $EtudiantManager->add($etudiant, $idPersonne);
+			
+		}
+		else if ($_SESSION['typePersonne']=='personnel')
+		{
+			//On va ajouter un salarie
+	
+			//TODO
 			$salarie = new Salarie(array(
 			'sal_telprof' => $_POST['tel_pro'],
 			'fon_num' => $_POST['choix_fonction'],
 			));
 			
-			$retour = $SalarieManager->add($salarie, $id);			
-		}
-		else if ($_SESSION['typePersonne']=='personnel')
-		{
-			//On va ajouter un salarie, et afficher le message comme quoi la personne est ajoutée
-	
-			//TODO
-			$etudiant = new Etudiant(array(
-			'dep_num' => $_POST['choix_departement'],
-			'div_num' => $_POST['choix_departement'],
-			));
-			
-			$retour = $EtudiantManager->add($etudiant, $id);
+			$retour = $SalarieManager->add($salarie, $idPersonne);			
 		}
 		
-		if ($retour != 0)
+		if ($retour != null)
 		{
 			//OK
 			?>  
 			<p>
 				<img src="image/valid.png" alt='valid'/>
-				<b><?php echo $_SESSION['prenom'] ?></b> a été ajouté.
+				<b><?php echo $_SESSION['Personne']->getPrenomPersonne(); ?></b> a été ajouté.
 			</p>
 			<?php
+			unset($_SESSION['Personne']);
+			//Enlever la variable de session 
 		}
 		else
 		{
@@ -218,10 +214,10 @@ empty($_SESSION['formulaire_saisiePersonne'])
 			?>  
 			<p>
 				<img src="image/erreur.png" alt='erreur'/>
-				<b><?php echo $_SESSION['prenom'] ?></b> n'a pas été ajouté. 
+				<b><?php echo $_SESSION['Personne']->getPrenomPersonne(); ?></b> n'a pas été ajouté. 
 			</p>
 			<?php 
+			unset($_SESSION['Personne']);
 		}
 	}
-}
 ?>

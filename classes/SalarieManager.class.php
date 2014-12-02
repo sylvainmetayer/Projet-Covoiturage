@@ -12,10 +12,10 @@ class SalarieManager{
 	public function add($salarie, $idPersonne)
 	{
 		$requete = $this->db->prepare(
-		'INSERT INTO SALARIE (per_num, sal_telprof, fon_num ) VALUES (:per_num, :sal_telprof, :fon_num;');
+		'INSERT INTO SALARIE (per_num, sal_telprof, fon_num ) VALUES (:per_num, :sal_telprof, :fon_num);');
 		$requete->bindValue(':per_num',$idPersonne);
-		$requete->bindValue(':sal_telprof',$salarie->getDepNum());
-		$requete->bindValue(':fon_num',$salarie->getDivNum());
+		$requete->bindValue(':sal_telprof',$salarie->getSal_TelProf());
+		$requete->bindValue(':fon_num',$salarie->getFonNum());
 		
 		$retour = $requete->execute();
 		return $retour;
