@@ -58,13 +58,15 @@ class PersonneManager {
 	}
 	
 	// A TESTER
-	public function supprimerPersonne($personne) {
-		$requete = $this->db->prepare ( 'DELETE FROM personne WHERE per_num = :per_num' );
+	public function supprimerPersonne($personne) 
+	{
+		$sql="DELETE FROM personne WHERE per_num=:per_num";
 		
-		$requete->bindValue ( ':per_num', $personne->getPerNum () );
+		$requete = $this->db->prepare($sql);
 		
-		$retour = $requete->execute ();
-		return $retour;
+		$requete->bindValue(':per_num', $personne);
+		
+		$requete->execute();
 	}
 	
 	public function getPersonneParId($idPersonne) {
