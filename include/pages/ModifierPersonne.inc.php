@@ -8,7 +8,7 @@ if(empty($_POST['per_num']) && empty($_POST['per_tel']))
 {
 ?>
 <form action="#" method="POST">
-		<label for='per_num'>Personne à modifier :</label>
+		Personne à modifier :
 			<select name="per_num" id="per_num">
 				<?php
 				$listePersonnes = $personneManager->getAllPersonnes();
@@ -30,28 +30,28 @@ $personne=$personneManager->getPersonneById($_POST['per_num']);
 $_SESSION['per_num']=$_POST['per_num'];
 ?>
 	<form action="#" method="POST">
-		<label for='per_nom'>Nom :</label>
-		<input name='per_nom' id='per_nom' type='text' value='<?php echo $personne->getNom(); ?>'/>
+		Nom :
+		<input name='per_nom' id='per_nom' type='text' value='<?php echo $personne->getNomPersonne(); ?>'/>
 		<br />
-		<label for='per_prenom'>Prenom :</label>
-		<input name='per_prenom' id='per_prenom' type='text' value='<?php echo $personne->getPrenom(); ?>'/>
+		Prenom :
+		<input name='per_prenom' id='per_prenom' type='text' value='<?php echo $personne->getPrenomPersonne(); ?>'/>
 		<br />
-		<label for='per_tel'>Téléphone :</label>
-		<input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->getTel(); ?>'/>
+		Téléphone :
+		<input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->getPerTel(); ?>'/>
 		<br />
-		<label for='per_mail'>Mail :</label>
-		<input name='per_mail' id='per_mail' type='text' value='<?php echo $personne->getMail(); ?>'/>
+		Mail :
+		<input name='per_mail' id='per_mail' type='text' value='<?php echo $personne->getPerMail(); ?>'/>
 		<br />
-		<label for='per_login'>Login :</label>
+		Login :
 		<input name='per_login' id='per_login' type='text' value='<?php echo $personne->getLogin(); ?>'/>
 		<br />
-		<label for='per_mdp'>Mot de passe actuel :</label>
+		Mot de passe actuel :
 		<input name='per_mdp' id='per_mdp' type='password' value=''/>
 		<br />
-		<label for='per_nouv'>Nouveau mot de passe :</label>
+		Nouveau mot de passe :
 		<input name='per_nouv' id='per_nouv' type='password' value=''/>
 		<br />
-		<label for='per_retaper'>Retaper mot de passe :</label>
+		Retaper mot de passe :
 		<input name='per_retaper' id='per_retaper' type='password' value=''/>
 		<br />
 		<input type='submit' value='Modifier'/>
