@@ -23,6 +23,7 @@ if (empty ( $_POST ['per_num'] ))
 <?php
 } else {
 	$personneManager->supprimerPersonne ( $_POST ['per_num'] );
+	//TOOD img a afficher
 	?><img src='../../image/valid.png' alt='ok'/> <p> Personne supprimée </p>";
 	
 	<?php
