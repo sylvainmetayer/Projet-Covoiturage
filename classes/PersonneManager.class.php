@@ -27,7 +27,7 @@ class PersonneManager{
 	}
 	
 	// A TESTER
-	public function getAllPersonne()
+	public function getAllPersonnes()
 	{
 		$listePersonne = array();
 		
@@ -37,9 +37,9 @@ class PersonneManager{
 		while ($personne_donnees = $requete->fetch(PDO::FETCH_OBJ))
 		{
 			$listePersonne[] = new Personne ($personne_donnees);
-			$requete->closeCursor();
 			return $listePersonne;
 		}
+		$requete->closeCursor();
 	}
 	
 	// A TESTER
@@ -127,6 +127,19 @@ class PersonneManager{
 		//Manque le fait de mettre le telephone pro et la fonction !
 		$listePersonne->closeCursor();
 		return $listePersonne;
+	}
 	
+	// A TESTER
+	public function getNbPersonnes()
+	{
+		$sql = 'SELECT * FROM PERSONNE';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while ($personne = $requete->fetch(PDO::FETCH_OBJ))
+		{
+			$sql = $sql +1;
+		}
+		$requete->closeCursor();
+		return $sql;	
 	}
 }
