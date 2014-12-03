@@ -9,8 +9,8 @@
 	<h1>Liste des parcours</h1>
 	
 	<p>Actuellement, il y a 
-	<?php echo $parcoursManager->getNbParcours(); ?> 
-	parcours enregistrÃ©s
+	<?php echo count($parcours);?> 
+	parcours enregistrés
 	</p>
 </div>
 <center>
