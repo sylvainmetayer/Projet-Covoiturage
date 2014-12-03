@@ -8,6 +8,31 @@ class ParcoursManager{
 	}
 
 	// A TESTER
+	public function getVilNum1et2VerifParcours($vil_num1, $vil_num2)
+	{
+		//On selectionne tous les parcours ayant pour départ vil_num1 et arrivée vil_num2
+		$sql = "SELECT par_num, par_km, vil_num1, vil_num2 FROM parcours WHERE vil_num1=:vil_num1 AND vil_num2=:vil_num2";
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(":vil_num1", $vil_num1);
+		$requete->bindValue(":vil_num2", $vil_num2);
+	
+		$requete->execute();
+	
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+	
+		if ($resultat != null) //Le parcours existe déjà
+		{
+			return $resultat;
+			// Il s'agit d'un objet !!
+		}
+		else
+		{
+			return null;
+			//Le parcours n'a pas été trouvé, il n'existe donc pas
+		}
+	}
+		
+	// A TESTER
 	public function add($parcours)
 	{
 		// Il manque une fonction qui recherche le numero de la ville passée en parametre
@@ -39,30 +64,7 @@ class ParcoursManager{
 		return $retour;
 	}
 
-	// A TESTER
-	public function getVilNum1et2VerifParcours($vil_num1, $vil_num2) 
-	{
-		//On selectionne tous les parcours ayant pour départ vil_num1 et arrivée vil_num2
-		$sql = "SELECT par_num, par_km, vil_num1, vil_num2 FROM parcours WHERE vil_num1=:vil_num1 AND vil_num2=:vil_num2";
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(":vil_num1", $vil_num1);
-		$requete->bindValue(":vil_num2", $vil_num2);
-		
-		$requete->execute();
-		
-		$resultat = $requete->fetch(PDO::FETCH_OBJ);
-		
-		if ($resultat != null) //Le parcours existe déjà
-		{
-			return $resultat;
-			// Il s'agit d'un objet !!
-		}
-		else
-		{
-			return null;
-			//Le parcours n'a pas été trouvé, il n'existe donc pas
-		}
-	}
+	
 	
 	// A FAIRE
 	public function getAllParcours()
