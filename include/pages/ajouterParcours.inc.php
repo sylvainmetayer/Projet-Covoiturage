@@ -11,7 +11,7 @@ if (empty($_POST['ville1']) or empty($_POST['ville2']) or empty($_POST['nbKm']))
 <form name='crea_parcours' id='crea_parcours' action='#' method='post'>
 
 <p> 
-	Ville de départ :
+	Ville de dï¿½part :
 	<select name=ville1 class='champ'> 
 			<option>Choisissez votre ville de dÃ©part</option>
 		<?php
@@ -30,7 +30,7 @@ if (empty($_POST['ville1']) or empty($_POST['ville2']) or empty($_POST['nbKm']))
 </p>
 
 <p> 
-	Ville d'arrivée :
+	Ville d'arrivï¿½e :
 	<select name=ville2 class='champ'>
 		<option>Choisissez votre ville de d'arrivÃ©e</option>
 		<?php
@@ -67,7 +67,7 @@ else
 	
 	$pdo = new MyPdo();
 	$Parcours = new Parcours(array('par_km' => $nbKm, 'vil_num1' => $ville1, 'vil_num2' => $ville2));
-	var_dump($Parcours);
+	//var_dump($Parcours);
 	$ParcoursManager = new ParcoursManager($pdo);
 	//var_dump($nbKm);
 	$retour = $ParcoursManager->add($Parcours);
@@ -77,7 +77,7 @@ else
 		?>  
 		<p>
 		<img src="image/valid.png" alt='valid'/>
-		Le parcours a bien été ajouté
+		Le parcours a bien ï¿½tï¿½ ajoutï¿½
 		</p>
 	<?php
 	}
@@ -86,7 +86,7 @@ else
 		?>  
 		<p>
 		<img src="image/erreur.png" alt='erreur'/>
-		Le parcours n'a pas été ajouté
+		Le parcours n'a pas ï¿½tï¿½ ajoutï¿½
 		</p>
 	<?php 
 	}

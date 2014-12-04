@@ -11,7 +11,7 @@ class ParcoursManager{
 	// A TESTER
 	public function VerifParcours($vil_num1, $vil_num2)
 	{
-		//On selectionne tous les parcours ayant pour d�part vil_num1 et arriv�e vil_num2
+		//On selectionne tous les parcours ayant pour d�part vil_num1 et arriv�e vil_num2
 		$sql = "SELECT par_num, par_km, vil_num1, vil_num2 FROM parcours WHERE vil_num1=:vil_num1 AND vil_num2=:vil_num2";
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(":vil_num1", $vil_num1);
@@ -45,7 +45,7 @@ class ParcoursManager{
 		$sens1 = $this->VerifParcours( $parcours->getVil_num1() , $parcours->getVil_num2() );
 		//on regarde l'autre sens
 		$sens2 = $this->VerifParcours( $parcours->getVil_num2() , $parcours->getVil_num1() );
-		var_dump($sens1); var_dump($sens2);
+		//var_dump($sens1); var_dump($sens2);
 		//si $sens1 et $sens2 sont different de null, ça veut dire que le parcours existe déjà, et qu'il ne faut pas l'ajouter à nouveau
 		if ( $sens1 != null and $sens2 != null)
 		{
@@ -61,7 +61,7 @@ class ParcoursManager{
 		$requete->bindValue(':vil_num2',$parcours->getVil_num2());
 	
 		$retour = $requete->execute();
-		var_dump($retour);
+		//var_dump($retour);
 		return $retour;
 	}
 
@@ -75,7 +75,7 @@ class ParcoursManager{
 		$sql = 'SELECT par_num, vil_num1, vil_num2, par_km FROM parcours';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
-		//truc multiple à g�rer
+		//truc multiple à g�rer
 		while ($nom_vil = $requete->fetch(PDO::FETCH_OBJ))
 		{
 			$listeParcours[] = new parcours($nom_vil);

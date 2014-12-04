@@ -10,7 +10,7 @@
 	
 	<p>Actuellement, il y a 
 	<?php echo count($parcours);?> 
-	parcours enregistrés
+	parcours enregistrï¿½s
 	</p>
 </div>
 <center>
@@ -29,8 +29,8 @@
 			//var_dump($single_parcours->getVil_num1());
 			//var_dump($villeManager->getNomVille($single_parcours->getVil_num1()));
 		?>
-		<td><?php echo $villeManager->getNomVille($single_parcours->getVil_num1())->vil_nom;?></td>
-		<td><?php echo $villeManager->getNomVille($single_parcours->getVil_num2())->vil_nom;?></td>
+		<td><?php echo $villeManager->getNomVille($single_parcours->getVil_num1())->getVilleNom();?></td>
+		<td><?php echo $villeManager->getNomVille($single_parcours->getVil_num2())->getVilleNom();?></td>
 		<td><?php echo $single_parcours->getParKm();?></td>
 	</tr>
 <?php 
