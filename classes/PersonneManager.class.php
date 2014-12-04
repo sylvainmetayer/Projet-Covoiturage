@@ -59,8 +59,28 @@ class PersonneManager {
 	
 	// A TESTER
 	public function supprimerPersonne($personne) 
-	{
-		$sqlEtudiant = "DELETE FROM etudiant where per_num=:per_num"
+	{		
+		//$personne ne contient que le per_num de la personne, on a pas besoin de passer par des getter
+		if ($this->isEtudiant($personne)) {
+			$sqlEtudiant = "DELETE FROM etudiant where per_num=:per_num";
+			
+			$requete = $this->db->prepare($sqlEtudiant);
+			
+			$requete->bindValue(':per_num', $personne);
+			
+			$requete->execute();
+		}
+		if ($this->isSalarie($personne)) {
+			$sqlSalarie = "DELETE FROM salarie where per_num=:per_num";
+			
+			$requete = $this->db->prepare($sqlSalarie);
+			
+			$requete->bindValue(':per_num', $personne);
+			
+			$requete->execute();
+		}
+		//Une fois l'étudiant/salarie supprimé, il faut delete la personne
+		
 		$sql="DELETE FROM personne WHERE per_num=:per_num";
 		
 		$requete = $this->db->prepare($sql);
@@ -75,7 +95,7 @@ class PersonneManager {
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':per_num', $idPersonne);
 	
-		$nbLignes = $requete->execute();
+		$requete->execute();
 		$resultat = $requete->fetch(PDO::FETCH_OBJ);
 	
 		if ($resultat != null)

@@ -3,17 +3,14 @@
 $pdo = new Mypdo ();
 $personneManager = new PersonneManager ( $pdo );
 
-if (empty ( $_POST ['per_num'] )) 
-{
-?>
+if (empty ( $_POST ['per_num'] )) {
+	?>
 <form action="#" method="POST">
-	Personne à supprimer :
-	<select name="per_num" id="per_num">
+	Personne à supprimer : <select name="per_num" id="per_num">
 	<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
-	foreach ( $listePersonnes as $personne ) 
-	{
-	?>
+	foreach ( $listePersonnes as $personne ) {
+		?>
 		<option value="<?php echo $personne->getPerNum(); ?>"><?php echo $personne->getNomPersonne()." ".$personne->getPrenomPersonne(); ?></option>
 		<?php
 	}
@@ -22,10 +19,18 @@ if (empty ( $_POST ['per_num'] ))
 </form>
 <?php
 } else {
-	$personneManager->supprimerPersonne ( $_POST ['per_num'] );
-	//TOOD img a afficher
-	?><img src='../../image/valid.png' alt='ok'/> <p> Personne supprimée </p>";
-	
+	$retour = $personneManager->supprimerPersonne ( $_POST ['per_num'] );
+	// TOOD img a afficher
+	if ($retour != 0) {
+		?>
+<img src='../../image/valid.png' alt='OK' />
+<p>Personne supprimée</p>
 	<?php
+	} else {
+		?>
+<img src='../../image/erreur.png' alt='KO' />
+<p>Erreur lors de la suppression de la personne</p>
+	<?php
+	}
 }
 ?>
