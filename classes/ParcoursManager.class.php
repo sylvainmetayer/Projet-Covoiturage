@@ -47,7 +47,7 @@ class ParcoursManager{
 		$sens2 = $this->VerifParcours( $parcours->getVil_num2() , $parcours->getVil_num1() );
 		//var_dump($sens1); var_dump($sens2);
 		//si $sens1 et $sens2 sont different de null, ça veut dire que le parcours existe déjà, et qu'il ne faut pas l'ajouter à nouveau
-		if ( $sens1 != null and $sens2 != null)
+		if ( $sens1 != null or $sens2 != null)
 		{
 			return null;
 			//on quitte sans ajouter de parcours
