@@ -7,8 +7,8 @@ $personneManager = new PersonneManager ( $pdo );
 
 <?php 
 //test des vardump
-var_dump($_POST['per_num']);
-var_dump($_POST['per_tel']);
+//var_dump($_POST['per_num']);
+//var_dump($_POST['per_tel']);
 ?>
 
 <?php 
@@ -16,7 +16,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 {
 ?>
 <form action="#" method="POST">
-	Personne à modifier : <select name="per_num" id="per_num">
+	Personne ï¿½ modifier : <select name="per_num" id="per_num">
 				<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -31,7 +31,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 } else if (empty ( $_POST ['per_tel'] )) 
 {
 	$personne = $personneManager->getPersonneParId ( $_POST ['per_num'] );
-	var_dump($personne);
+	//var_dump($personne);
 	$_SESSION ['per_num'] = $_POST ['per_num'];
 	?>
 	<form action="#" method="POST">
@@ -39,7 +39,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 			<br /> 
 			Prenom : <input name='per_prenom' id='per_prenom' type='text' value='<?php echo $personne->getPrenomPersonne(); ?>' required /> 
 			<br />
-			Téléphone : <input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->getPerTel(); ?>' required/> 
+			Tï¿½lï¿½phone : <input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->getPerTel(); ?>' required/> 
 			<br /> 
 			Mail : <input name='per_mail' id='per_mail' type='text' value='<?php echo $personne->getPerMail(); ?>' required/> 
 			<br /> 
@@ -47,7 +47,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 			<br /> 
 			Mot de passe actuel : <input name='per_mdp' id='per_mdp' type='password' value='' />
 			<br />
-			<!-- On saisie deux fois afin d'être sur que la saisie du nouveau mot de passe est correcte --> 
+			<!-- On saisie deux fois afin d'ï¿½tre sur que la saisie du nouveau mot de passe est correcte --> 
 			Nouveau mot de passe : <input name='per_nouveau' id='per_nouveau' type='password' value=''  />
 			<br /> 
 			Retaper mot de passe : <input name='per_confirmation' id='per_confirmation' type='password' value='' />
@@ -81,7 +81,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 				$PersonneModifie->setPwd ( $nouvMdp );
 				
 				$personneManager->updatePersonne ( $PersonneModifie );
-				echo  "Personne mise à jour" ;
+				echo  "Personne mise ï¿½ jour" ;
 			} else 
 			{
 				echo "Les mots de passes ne correspondent pas";

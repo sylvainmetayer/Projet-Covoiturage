@@ -81,7 +81,7 @@ class PersonneManager {
 		//Une fois l'étudiant/salarie supprimé, il faut delete les parcours ou la personne est.
 		$sqlPropose = "DELETE FROM propose WHERE per_num=:per_num";
 		
-		$requete = $this->db->prepare($sql);
+		$requete = $this->db->prepare($sqlPropose);
 		
 		$requete->bindValue(':per_num', $personne);
 		
