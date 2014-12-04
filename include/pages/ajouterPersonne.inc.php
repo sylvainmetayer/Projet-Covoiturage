@@ -24,13 +24,13 @@ if (
 		Nom : <input type='text' placeholder='Ex : Michu' name='nom'
 			class='champ' required> PrÃ©nom : <input type='text'
 			placeholder='Ex : Sarah' name='prenom' class='champ' required> <br />
-		Téléphone : <input type='text' placeholder='0xxxxxxxxx' name='tel'
+		Tï¿½lï¿½phone : <input type='text' placeholder='0xxxxxxxxx' name='tel'
 			class='champ' pattern='[0][0-9]{9}' required> Mail : <input
 			type='mail' placeholder='sarah.michu@example.fr' name='mail'
 			class='champ' required> <br /> Login : <input type='text'
 			placeholder='Ex : Sarah87' name='login' class='champ' required> Mot
 		de passe : <input type='password' placeholder='********' name='mdp'
-			class='champ' required> <br /> Catégorie :
+			class='champ' required> <br /> Catï¿½gorie :
 		<!-- Par dÃ©faut, on met l'etudiant cochÃ© afin d'Ãªtre sur qu'une case soit cochÃ©e.-->
 		<input type='radio' name='typePersonne' class='champ' value='etudiant'
 			checked='checked'> Etudiant </input> <input type='radio'
@@ -177,7 +177,7 @@ if (! empty ( $_SESSION ['Personne'] ) and (! empty ( $_POST ['choix_annee'] ) o
 		?>
 <p>
 	<img src="image/erreur.png" alt='erreur' /> <b><?php echo $_SESSION['Personne']->getPrenomPersonne(); ?></b>
-	n'a pas été ajouté.
+	n'a pas ï¿½tï¿½ ajoutï¿½.
 </p>
 <?php
 		unset ( $_SESSION ['Personne'] );
