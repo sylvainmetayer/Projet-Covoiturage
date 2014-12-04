@@ -63,7 +63,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 	//permet de recuperer tout les champs
 	
 	$PersonneModifie->setPerNum ( $_SESSION ['per_num'] );
-	$PersonneModifie->setPerPwd ( $personne->setPerPwd($_SESSION['per_mdp']) );
+	$PersonneModifie->setPerPwd ( $personne->setPerPwd($_POST['per_mdp']) );
 	
 	if (! empty ( $_POST ['per_mdp'] ))
 	{
