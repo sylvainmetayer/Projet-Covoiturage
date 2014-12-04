@@ -59,7 +59,10 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	// permet de recuperer tout les champs
 	
 	$PersonneModifie->setPerNum ( $_SESSION ['per_num'] );
-	$PersonneModifie->setPerPwd ( $personne->setPerPwd ( $_POST ['per_mdp'] ) );
+	$PersonneModifie->setPerPwd ( $personne->getPerPwd() );
+	
+	var_dump($PersonneModifie);
+	var_dump($personne->getPerPwd());
 	
 	if (! empty ( $_POST ['per_mdp'] )) {
 		// Il a voulu changer de mdp
@@ -67,15 +70,16 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 		$nouveau_pass_1 = $_POST ['per_nouveau'];
 		$nouveau_pass_2 = $_POST ['per_confirmation'];
 		
-		if (sha1 ( sha1 ( $mdp ) . SEL ) == $personne->getPerPwd ()) {
+		
+		if (sha1 ( sha1 ( $mdp ) . SEL ) == $PersonneModifie->getPerPwd ()) {
 			//On s'assure que le mot de passe saisi est egal au mot de passe dans la BD
 			if ($nouveau_pass_1 == $nouveau_pass_2) {
 				// Alors tout est bon
 				$nouvMdp = sha1 ( sha1 ( $nouveau_pass_1 ) . SEL );
-				$PersonneModifie->setPwd ( $nouvMdp );
+				$PersonneModifie->setPerPwd ( $nouvMdp );
 				
-				$personneManager->updatePersonne ( $PersonneModifie );
-				echo "Personne mise � jour";
+				$personneManager->modifierPersonne( $PersonneModifie );
+				echo "Personne mise à jour";
 			} else {
 				echo "Les mots de passes ne correspondent pas";
 			}

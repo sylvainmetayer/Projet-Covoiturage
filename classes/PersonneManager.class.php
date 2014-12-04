@@ -38,10 +38,10 @@ class PersonneManager {
 	
 	// A TESTER
 	public function modifierPersonne($personne) {
-		$requete = $this->db->prepare ( 'UPDATE personne SET per_prenom= \':prenom\', per_nom\':nom\', 
-		per_tel=\':tel\', per_mail=\':mail\', 
-		per_pwd=\':pwd\', per_login=\':login\' 
-		WHERE per_num = :per_num' );
+		$requete = $this->db->prepare ( "UPDATE personne SET per_prenom=:prenom, per_nom=:nom, 
+		per_tel=:tel, per_mail=:mail, 
+		per_pwd=:pwd, per_login=:login 
+		WHERE per_num = :per_num" );
 		
 		$requete->bindValue ( ':nom', $personne->getNomPersonne () );
 		$requete->bindValue ( ':prenom', $personne->getPrenomPersonne () );
@@ -52,7 +52,7 @@ class PersonneManager {
 		
 		$requete->bindValue ( ':per_num', $personne->getPerNum () ); // permet de modifier la bonne personne
 		
-		$retour = $requete->execute ();
+		$requete->execute ();
 		return $personne->getPerNum (); // pour r�cup�rer l'id de l'étudiant/salarié à modifier
 	}
 	
