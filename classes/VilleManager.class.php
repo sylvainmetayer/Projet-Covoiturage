@@ -47,7 +47,7 @@ class VilleManager{
 		$resultat=$requete->fetch(PDO::FETCH_OBJ);
 		//var_dump($resultat);
 		$requete->closeCursor();
-		return $resultat;
+		return new Ville($resultat);
 	}
 }
 ?>

@@ -31,9 +31,10 @@ $personneManager = new PersonneManager ( $pdo ); ?>
 			</div>
 			<div id="connect">
 				<?php if (!empty($_SESSION['per_login'])) { //la personne est connectée ?>
-					<a href="index.php?page=12">Bonjour <?php ?>Deconnexion </a>
+					<a href="index.php?page=12">Bonjour <?php echo $personneManager->getPersonneParId($idPersonne)->getNomPersonne().
+					" ". $personneManager->getPersonneParId($idPersonne)->getPrenomPersonne(); ?> || Deconnexion </a>
 				<?php } else { //la personne n'est pas connectée ?>
-					<a href="index.php?page=11">Bonjour <?php $personneManager->getPersonneParId($idPersonne)->getNomPersonne()?>Connexion </a>
+					<a href="index.php?page=11">Connexion </a>
 				<?php }?>
 			</div>
 	</div>
