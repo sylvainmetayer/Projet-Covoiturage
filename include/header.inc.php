@@ -1,6 +1,9 @@
-<?php session_start();
-$pdo = new Mypdo (); //
-$personneManager = new PersonneManager ( $pdo ); ?>
+<?php
+
+session_start ();
+//$pdo = new Mypdo ();
+//$personneManager = new PersonneManager ( $pdo );
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -10,32 +13,34 @@ $personneManager = new PersonneManager ( $pdo ); ?>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 <?php
-		$title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
+$title = "Bienvenue sur le site de covoiturage de l'IUT.";
+?>
 		<title>
-		<?php echo $title ?>
+		<?php echo $title?>
 		</title>
 
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 </head>
-	<body>
-	<div id="header">	
+<body>
+	<div id="header">
 		<div id="entete">
 			<div class="colonne">
-				<a href="index.php?page=0">
-					<img src="image/logo.png" alt="Logo covoiturage IUT" title="Logo covoiturage IUT Limousin" />
+				<a href="index.php?page=0"> <img src="image/logo.png"
+					alt="Logo covoiturage IUT" title="Logo covoiturage IUT Limousin" />
 				</a>
 			</div>
 			<div class="colonne">
-				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
+				Covoiturage de l'IUT,<br />Partagez plus que votre vï¿½hicule !!!
 			</div>
-			</div>
-			<div id="connect">
-				<?php if (!empty($_SESSION['per_login'])) { //la personne est connectée ?>
-					<a href="index.php?page=12">Bonjour <?php echo $personneManager->getPersonneParId($idPersonne)->getNomPersonne().
-					" ". $personneManager->getPersonneParId($idPersonne)->getPrenomPersonne(); ?> || Deconnexion </a>
-				<?php } else { //la personne n'est pas connectée ?>
+		</div>
+		<div id="connect">
+				<?php if (!empty($_SESSION['per_login'])) { //la personne est connectï¿½e ?>
+					<a href="index.php?page=12">Bonjour <?php
+					
+echo $personneManager->getPersonneParId ( $idPersonne )->getNomPersonne () . " " . $personneManager->getPersonneParId ( $idPersonne )->getPrenomPersonne ();
+					?> || Deconnexion </a>
+				<?php } else { //la personne n'est pas connectï¿½e ?>
 					<a href="index.php?page=11">Connexion </a>
 				<?php }?>
 			</div>
 	</div>
-	

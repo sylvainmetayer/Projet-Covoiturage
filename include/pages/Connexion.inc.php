@@ -21,13 +21,13 @@ if (empty($_POST['reponse']))
 		<input type="password" name="per_pwd" id="per_pwd">
 		<br/>
 		<p> 
-		Merci de résoudre le calcul suivant pour confirmer que vous n'êtes pas un robot <br/>
+		Merci de rï¿½soudre le calcul suivant pour confirmer que vous n'ï¿½tes pas un robot <br/>
 		<?php echo "$nb1+$nb2 = ?"; ?>
 		</p>
 		<input type="hidden" name="nb1" value="<?php echo $nb1; ?>" />
 		<input type="hidden" name="nb2" value="<?php echo $nb2; ?>" />
 		<br/>
-		<input type="text" pattern='[0-9]' name="reponse" /> 
+		<input type="text" pattern='[0-9]{2}' name="reponse" /> 
 		<br/>
 		<input type="submit" value="Connexion" />
 	</form>
@@ -39,16 +39,16 @@ if (empty($_POST['reponse']))
 	$nb2_verif = $_POST['nb2'];
 	$resultat = $nb1_verif + $nb2_verif; //resultat attendu.
 	
-	$reponse = $_POST['reponse']; //réponse de l'utilsateur
+	$reponse = $_POST['reponse']; //rï¿½ponse de l'utilsateur
 	
 	$login = $_POST['per_login'];
 	$pass = $_POST['per_pwd'];
-	//détails de la connexion
+	//dï¿½tails de la connexion
 	$connexionOK = $personneManager->testConnexion($login, $pass);
 
-	var_dump($connexionOK);
-	var_dump($login);
-	var_dump($reponse);
+	//var_dump($connexionOK);
+	//var_dump($login);
+	//var_dump($reponse);
 	
 	
 	if ($reponse != $resultat) //si le captcha est incorrect
@@ -65,8 +65,8 @@ if (empty($_POST['reponse']))
 	{
 		$_SESSION['per_login'] = $_POST['per_login'];
 		$personneConnectee = $personneManager->getPersonneParLogin($_SESSION['per_login']);
-		$_SESSION["per_num"] = ($personneConnectee->getPerNum()->per_num);
-		// Probleme, etant donné que c'est un objet
+		$_SESSION["per_num"] = ($personneConnectee->getPerNum());
+		// Probleme, etant donnï¿½ que c'est un objet
 		// TODO
 		var_dump($personneConnectee);
 		echo "<p>Bienvenue ".$personneConnectee->getPrenomPersonne()." !</p>";

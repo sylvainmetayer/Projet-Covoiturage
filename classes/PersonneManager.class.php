@@ -53,7 +53,7 @@ class PersonneManager {
 		$requete->bindValue ( ':per_num', $personne->getPerNum () ); // permet de modifier la bonne personne
 		
 		$retour = $requete->execute ();
-		return $personne->getPerNum (); // pour récupérer l'id de l'Ã©tudiant/salariÃ© Ã  modifier
+		return $personne->getPerNum (); // pour rï¿½cupï¿½rer l'id de l'Ã©tudiant/salariÃ© Ã  modifier
 	}
 	
 	// A TESTER
@@ -78,7 +78,7 @@ class PersonneManager {
 			
 			$requete->execute();
 		}
-		//Une fois l'étudiant/salarie supprimé, il faut delete la personne
+		//Une fois l'ï¿½tudiant/salarie supprimï¿½, il faut delete la personne
 		
 		$sql="DELETE FROM personne WHERE per_num=:per_num";
 		
@@ -119,7 +119,6 @@ class PersonneManager {
 	
 		if ($resultat != null)
 		{
-			var_dump($resultat);
 			return new Personne($resultat);
 			//On retourne un objet Personne
 		}
