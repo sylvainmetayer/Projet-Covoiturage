@@ -1,4 +1,4 @@
 <?php 
 	session_destroy();
 ?>
-<h1> Vous avez été déconnecté.</h1>
+<h1> Vous avez Ã©tÃ© dÃ©connectÃ©.</h1>

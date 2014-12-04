@@ -35,6 +35,6 @@ $title = "Bienvenue sur le site de covoiturage de l'IUT.";
 					<a href="index.php?page=12">Bonjour <?php echo $_SESSION['per_prenom_connecte']; ?> || Deconnexion </a>
 				<?php } else { //la personne n'est pas connect�e ?>
 					<a href="index.php?page=11">Connexion </a>
-				<?php }?>
+				<?php } ?>
 			</div>
 	</div>
