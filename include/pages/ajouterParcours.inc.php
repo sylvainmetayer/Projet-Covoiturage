@@ -30,7 +30,7 @@ if (empty($_POST['ville1']) or empty($_POST['ville2']) or empty($_POST['nbKm']))
 </p>
 
 <p> 
-	Ville d'arriv√©e :
+	Ville d'arrivÈe :
 	<select name=ville2 class='champ'>
 		<option>Choisissez votre ville de d'arriv√©e</option>
 		<?php
@@ -71,12 +71,13 @@ else
 	$ParcoursManager = new ParcoursManager($pdo);
 	//var_dump($nbKm);
 	$retour = $ParcoursManager->add($Parcours);
-	if ($retour != 0) //OK
+	//var_dump($retour);
+	if ($retour != null) //OK
 	{
 		?>  
 		<p>
 		<img src="image/valid.png" alt='valid'/>
-		Le parcours a bien √©t√© ajout√©
+		Le parcours a bien ÈtÈ ajoutÈ
 		</p>
 	<?php
 	}
@@ -85,7 +86,7 @@ else
 		?>  
 		<p>
 		<img src="image/erreur.png" alt='erreur'/>
-		Le parcours n'a pas √©t√© ajout√©
+		Le parcours n'a pas ÈtÈ ajoutÈ
 		</p>
 	<?php 
 	}

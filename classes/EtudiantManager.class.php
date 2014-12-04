@@ -41,4 +41,29 @@ class EtudiantManager
 		$requete->closeCursor();
 		return $listeEtudiants;
 	}
+	
+	public function getNbEtudiants()
+	{
+	
+		$sql = 'select * from etudiant';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while ($etudiants = $requete->fetch(PDO::FETCH_OBJ))
+		{
+			$sql=$sql+1;
+		}
+		$requete->closeCursor();
+		return $sql;
+	}
+	
+	public function getEtudiant($per_num){
+		$sql = 'select * from etudiant e, division di,departement de, personne p,ville v
+		where de.dep_num=e.dep_num and e.div_num=di.div_num and e.per_num=p.per_num and de.vil_num=v.vil_num';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$donnees= $requete->fetch(PDO::FETCH_ASSOC);
+		$etudiant=new Etudiant($donnees);
+		$requete->closeCursor();
+		return $etudiant;
+	}
 }

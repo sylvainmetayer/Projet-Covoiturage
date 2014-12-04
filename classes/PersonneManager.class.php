@@ -60,6 +60,7 @@ class PersonneManager {
 	// A TESTER
 	public function supprimerPersonne($personne) 
 	{
+		$sqlEtudiant = "DELETE FROM etudiant where per_num=:per_num"
 		$sql="DELETE FROM personne WHERE per_num=:per_num";
 		
 		$requete = $this->db->prepare($sql);
@@ -179,4 +180,32 @@ class PersonneManager {
 		$listePersonne->closeCursor ();
 		return $listePersonne;
 	}
+	
+	public function isEtudiant($per_num){
+		$requete=$this->db->prepare('select per_num from etudiant where per_num='.$per_num);
+		$retour = $requete->execute();
+		if($ligne= $requete->fetch(PDO::FETCH_ASSOC)){
+			$retour=true;
+		}
+		else{
+			$retour=false;
+		}
+		$requete->closeCursor();
+		return $retour;
+	}
+	
+	public function isSalarie($per_num){
+	
+		$requete=$this->db->prepare('select per_num from salarie where per_num='.$per_num);
+		$retour = $requete->execute();
+		if($ligne= $requete->fetch(PDO::FETCH_ASSOC)){
+			$retour=true;
+		}
+		else{
+			$retour=false;
+		}
+		$requete->closeCursor();
+		return $retour;
+	}
+	
 }

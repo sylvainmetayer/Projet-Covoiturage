@@ -38,4 +38,28 @@ class SalarieManager{
 		return $listeSalaries;
 	}
 	
+	public function getNbSalaries(){
+	
+		$sql = 'select * from salarie';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		while ($salaries = $requete->fetch(PDO::FETCH_OBJ))
+		{
+			$sql=$sql+1;
+		}
+		$requete->closeCursor();
+		return $sql;
+	}
+	
+	public function getSalarie($per_num){
+	
+		$sql = 'select * from salarie s,personne p,fonction f
+		where s.per_num=p.per_num and s.fon_num=f.fon_num';
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+		$donnees= $requete->fetch(PDO::FETCH_ASSOC);
+		$salarie=new Salarie($donnees);
+		$requete->closeCursor();
+		return $salarie;
+	}
 }
