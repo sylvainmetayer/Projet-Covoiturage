@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+$pdo = new Mypdo (); //
+$personneManager = new PersonneManager ( $pdo ); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -24,14 +26,14 @@
 				</a>
 			</div>
 			<div class="colonne">
-				Covoiturage de l'IUT,<br />Partagez plus que votre vÃ©hicule !!!
+				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
 			</div>
 			</div>
 			<div id="connect">
 				<?php if (!empty($_SESSION['per_login'])) { //la personne est connectée ?>
 					<a href="index.php?page=12">Bonjour <?php ?>Deconnexion </a>
 				<?php } else { //la personne n'est pas connectée ?>
-					<a href="index.php?page=11">Bonjour <?php ?>Connexion </a>
+					<a href="index.php?page=11">Bonjour <?php $personneManager->getPersonneParId($idPersonne)->getNomPersonne()?>Connexion </a>
 				<?php }?>
 			</div>
 	</div>
