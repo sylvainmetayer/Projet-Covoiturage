@@ -40,21 +40,17 @@ if (empty ( $_POST ['reponse'] )) {
 	
 	$connexionOK = $personneManager->testConnexion ( $login, $pass );
 	
-	// var_dump($connexionOK);
-	// var_dump($login);
-	// var_dump($reponse);
-	
 	if ($reponse != $resultat) { // si le captcha est incorrect
 		echo "Le captcha est incorrect";
 		?>
-<a href="index.php?page=11">Reessayer ? </a>
+<br/> <strong><a href="index.php?page=11">Reessayer ? </a>
 <?php
 	}
 	
 	if ($connexionOK == false) { // mauvais mot de passe/identifiant
 		echo "Erreur d'identifiant / mot de passe";
 		?>
-<a href="index.php?page=11">Reessayer ? </a>
+<br/><a href="index.php?page=11">Reessayer ? </a>
 <?php
 	}
 	
