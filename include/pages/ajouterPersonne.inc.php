@@ -13,9 +13,9 @@ $EtudiantManager = new EtudiantManager ( $pdo );
 // donc on affiche le formulaire de saisie d'une personne
 if (
 
-(empty ( $_POST ['nom'] )) and ((empty($_POST['tel_pro']) or empty($_POST['choix_departement'])) )  
+(empty ( $_POST ['nom'] )) and ((empty ( $_POST ['tel_pro'] ) or empty ( $_POST ['choix_departement'] )))) 
 
-) {
+{
 	
 	?>
 <h1>Ajouter une personne</h1>
@@ -41,7 +41,7 @@ if (
 	</form>
 </div>
 <?php
-} else if ((!empty ( $_POST ['nom'] )) and (empty($_POST['tel_pro']) or empty($_POST['choix_departement']) )  ) {
+} else if ((! empty ( $_POST ['nom'] )) and (empty ( $_POST ['tel_pro'] ) or empty ( $_POST ['choix_departement'] ))) {
 	// Dans ce cas, le formulaire de saisie de la personne est rempli.
 	
 	// Details de la personne stockée dans une variable de session
@@ -54,11 +54,10 @@ if (
 			'per_pwd' => $_POST ['mdp'] 
 	) );
 	
-	$Personne->setPerPwd(sha1 ( sha1 ( $Personne->getPerPwd() ) . SEL ));
-	//Grain de sel du mot de passe.
+	$Personne->setPerPwd ( sha1 ( sha1 ( $Personne->getPerPwd () ) . SEL ) );
+	// Grain de sel du mot de passe.
 	
 	$_SESSION ['Personne'] = $Personne;
-	
 	
 	$_SESSION ['typePersonne'] = $_POST ['typePersonne'];
 	// Si la personne est un etudiant ou un salarié, peut-être inutile.
@@ -136,7 +135,8 @@ if (
 </div>
 <?php
 	}
-} if ((empty ( $_POST ['nom'] )) and (!empty($_POST['tel_pro']) or !empty($_POST['choix_departement']) )  ) {
+}
+if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( $_POST ['choix_departement'] ))) {
 	// NORMALEMENT !!!!!!!!!!!!!!!! A TESTER
 	// TODO
 	// Dans ce cas, le formulaire d'une personne est complet, dans les $_SESSION, et soit le salarie, soit l'etudiant est dans le $_POST
