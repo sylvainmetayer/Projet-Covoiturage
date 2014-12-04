@@ -11,7 +11,7 @@ if (empty($_POST['ville1']) or empty($_POST['ville2']) or empty($_POST['nbKm']))
 <form name='crea_parcours' id='crea_parcours' action='#' method='post'>
 
 <p> 
-	Ville de départ :
+	Ville de d�part :
 	<select name=ville1 class='champ'> 
 			<option>Choisissez votre ville de départ</option>
 		<?php
