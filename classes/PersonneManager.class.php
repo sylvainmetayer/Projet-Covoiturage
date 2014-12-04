@@ -57,135 +57,116 @@ class PersonneManager {
 	}
 	
 	// A TESTER
-	public function supprimerPersonne($personne) 
-	{		
-		//$personne ne contient que le per_num de la personne, on a pas besoin de passer par des getter
-		if ($this->isEtudiant($personne)) {
+	public function supprimerPersonne($personne) {
+		// $personne ne contient que le per_num de la personne, on a pas besoin de passer par des getter
+		if ($this->isEtudiant ( $personne )) {
 			$sqlEtudiant = "DELETE FROM etudiant where per_num=:per_num";
 			
-			$requete = $this->db->prepare($sqlEtudiant);
+			$requete = $this->db->prepare ( $sqlEtudiant );
 			
-			$requete->bindValue(':per_num', $personne);
+			$requete->bindValue ( ':per_num', $personne );
 			
-			$requete->execute();
+			$requete->execute ();
 		}
-		if ($this->isSalarie($personne)) {
+		if ($this->isSalarie ( $personne )) {
 			$sqlSalarie = "DELETE FROM salarie where per_num=:per_num";
 			
-			$requete = $this->db->prepare($sqlSalarie);
+			$requete = $this->db->prepare ( $sqlSalarie );
 			
-			$requete->bindValue(':per_num', $personne);
+			$requete->bindValue ( ':per_num', $personne );
 			
-			$requete->execute();
+			$requete->execute ();
 		}
-		//Une fois l'étudiant/salarie supprimé, il faut delete les parcours ou la personne est.
+		// Une fois l'étudiant/salarie supprimé, il faut delete les parcours ou la personne est.
 		$sqlPropose = "DELETE FROM propose WHERE per_num=:per_num";
 		
-		$requete = $this->db->prepare($sqlPropose);
+		$requete = $this->db->prepare ( $sqlPropose );
 		
-		$requete->bindValue(':per_num', $personne);
+		$requete->bindValue ( ':per_num', $personne );
 		
-		$requete->execute();
+		$requete->execute ();
 		
-		//Finalement, on delete la personne
+		// Finalement, on delete la personne
 		
-		$sql="DELETE FROM personne WHERE per_num=:per_num";
+		$sql = "DELETE FROM personne WHERE per_num=:per_num";
 		
-		$requete = $this->db->prepare($sql);
+		$requete = $this->db->prepare ( $sql );
 		
-		$requete->bindValue(':per_num', $personne);
+		$requete->bindValue ( ':per_num', $personne );
 		
-		$requete->execute();
+		$requete->execute ();
 	}
-	
 	public function getPersonneParId($idPersonne) {
 		$sql = "SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_num=:per_num";
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':per_num', $idPersonne);
-	
-		$requete->execute();
-		$resultat = $requete->fetch(PDO::FETCH_OBJ);
-	
-		if ($resultat != null)
-		{
-			return new Personne($resultat);
-			//On retourne un objet Personne
-		}
-		else
-		{
+		$requete = $this->db->prepare ( $sql );
+		$requete->bindValue ( ':per_num', $idPersonne );
+		
+		$requete->execute ();
+		$resultat = $requete->fetch ( PDO::FETCH_OBJ );
+		
+		if ($resultat != null) {
+			return new Personne ( $resultat );
+			// On retourne un objet Personne
+		} else {
 			return null;
 		}
-		$requete->closeCursor();
+		$requete->closeCursor ();
 	}
-	
 	public function getPersonneParLogin($login) {
 		$sql = "SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_login=:login";
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':login', $login);
-	
-		$nbLignes = $requete->execute();
-		$resultat = $requete->fetch(PDO::FETCH_OBJ);
-	
-		if ($resultat != null)
-		{
-			return new Personne($resultat);
-			//On retourne un objet Personne
-		}
-		else
-		{
+		$requete = $this->db->prepare ( $sql );
+		$requete->bindValue ( ':login', $login );
+		
+		$nbLignes = $requete->execute ();
+		$resultat = $requete->fetch ( PDO::FETCH_OBJ );
+		
+		if ($resultat != null) {
+			return new Personne ( $resultat );
+			// On retourne un objet Personne
+		} else {
 			return null;
 		}
 	}
 	
-	//Pour la connexion
-	public function testConnexion($login, $mdp)
-	{
-		//$sale = sha1( sha1($mdp) . SEL ); le grain de sel, a voir plus tard.
-	
-		$sql= "SELECT per_login FROM personne WHERE per_login=:login AND per_pwd=:mdp";
-	
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':login', $login);
-		//$requete->bindValue(':mdp', $sale);
-		$requete->bindValue(':mdp', $mdp);
+	// Pour la connexion
+	public function testConnexion($login, $mdp) {
+		// $sale = sha1( sha1($mdp) . SEL ); le grain de sel, a voir plus tard.
+		$sql = "SELECT per_login FROM personne WHERE per_login=:login AND per_pwd=:mdp";
 		
-		$requete->execute();
-		$resultat = $requete->fetch(PDO::FETCH_OBJ);
-	
-		if($resultat != NULL) 
-		{
+		$requete = $this->db->prepare ( $sql );
+		$requete->bindValue ( ':login', $login );
+		$requete->bindValue ( ':mdp', (sha1 ( sha1 ( $mdp ) . SEL )) );
+		$requete->bindValue ( ':mdp', $mdp );
+		
+		$requete->execute ();
+		$resultat = $requete->fetch ( PDO::FETCH_OBJ );
+		
+		if ($resultat != NULL) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
-	public function isEtudiant($per_num){
-		$requete=$this->db->prepare('select per_num from etudiant where per_num='.$per_num);
-		$retour = $requete->execute();
-		if($ligne= $requete->fetch(PDO::FETCH_ASSOC)){
-			$retour=true;
+	public function isEtudiant($per_num) {
+		$requete = $this->db->prepare ( 'select per_num from etudiant where per_num=' . $per_num );
+		$retour = $requete->execute ();
+		if ($ligne = $requete->fetch ( PDO::FETCH_ASSOC )) {
+			$retour = true;
+		} else {
+			$retour = false;
 		}
-		else{
-			$retour=false;
-		}
-		$requete->closeCursor();
+		$requete->closeCursor ();
 		return $retour;
 	}
-	
-	public function isSalarie($per_num){
-	
-		$requete=$this->db->prepare('select per_num from salarie where per_num='.$per_num);
-		$retour = $requete->execute();
-		if($ligne= $requete->fetch(PDO::FETCH_ASSOC)){
-			$retour=true;
+	public function isSalarie($per_num) {
+		$requete = $this->db->prepare ( 'select per_num from salarie where per_num=' . $per_num );
+		$retour = $requete->execute ();
+		if ($ligne = $requete->fetch ( PDO::FETCH_ASSOC )) {
+			$retour = true;
+		} else {
+			$retour = false;
 		}
-		else{
-			$retour=false;
-		}
-		$requete->closeCursor();
+		$requete->closeCursor ();
 		return $retour;
 	}
-		
 }
