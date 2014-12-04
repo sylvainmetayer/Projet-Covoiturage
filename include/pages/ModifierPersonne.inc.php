@@ -65,7 +65,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 	$PersonneModifie->setPerNum ( $_SESSION ['per_num'] );
 	$PersonneModifie->setPerPwd ( $personne->setPerPwd($_SESSION['per_mdp']) );
 	
-	if (! empty ( $_POST ['per_mdp'] )) 
+	if (! empty ( $_POST ['per_mdp'] ))
 	{
 		// Il a voulu changer de mdp
 		$mdp = $_POST ['per_mdp'];
