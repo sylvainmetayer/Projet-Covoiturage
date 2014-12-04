@@ -45,12 +45,12 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 			<br /> 
 			Login : <input name='per_login' id='per_login' type='text' value='<?php echo $personne->per_login; ?>' required/> 
 			<br /> 
-			Mot de passe actuel : <input name='per_mdp' id='per_mdp' type='password' value='' required/>
+			Mot de passe actuel : <input name='per_mdp' id='per_mdp' type='password' value='' />
 			<br />
 			<!-- On saisie deux fois afin d'être sur que la saisie du nouveau mot de passe est correcte --> 
-			Nouveau mot de passe : <input name='per_nouveau' id='per_nouveau' type='password' value='' required />
+			Nouveau mot de passe : <input name='per_nouveau' id='per_nouveau' type='password' value=''  />
 			<br /> 
-			Retaper mot de passe : <input name='per_confirmation' id='per_confirmation' type='password' value='' required/>
+			Retaper mot de passe : <input name='per_confirmation' id='per_confirmation' type='password' value='' />
 			<br />
 			<input type='submit' value='Modifier' />
 	</form>
@@ -79,14 +79,14 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 				$nouvPersonne->setPwd ( $nouvMdp );
 				
 				$personneManager->updatePersonne ( $nouvPersonne );
-				afficherValide ( "Personne mise à jour" );
+				echo  "Personne mise à jour" ;
 			} else 
 			{
-				afficherErreur ( "Les mots de passes ne correspondent pas" );
+				echo "Les mots de passes ne correspondent pas";
 			}
 		} else 
 		{
-			afficherErreur ( "Mot de passe incorrect." );
+			echo "Mot de passe incorrect.";
 		}
 	}
 }
