@@ -35,15 +35,15 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 	$_SESSION ['per_num'] = $_POST ['per_num'];
 	?>
 	<form action="#" method="POST">
-			Nom : <input name='per_nom' id='per_nom' type='text' value="<?php echo $personne->per_nom;?>" required /> 
+			Nom : <input name='per_nom' id='per_nom' type='text' value="<?php echo $personne->getNomPersonne();?>" required /> 
 			<br /> 
-			Prenom : <input name='per_prenom' id='per_prenom' type='text' value='<?php echo $personne->per_prenom; ?>' required /> 
+			Prenom : <input name='per_prenom' id='per_prenom' type='text' value='<?php echo $personne->getPrenomPersonne(); ?>' required /> 
 			<br />
-			Téléphone : <input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->per_tel; ?>' required/> 
+			Téléphone : <input name='per_tel' id='per_tel' type='text' value='<?php echo $personne->getPerTel(); ?>' required/> 
 			<br /> 
-			Mail : <input name='per_mail' id='per_mail' type='text' value='<?php echo $personne->per_mail; ?>' required/> 
+			Mail : <input name='per_mail' id='per_mail' type='text' value='<?php echo $personne->getPerMail(); ?>' required/> 
 			<br /> 
-			Login : <input name='per_login' id='per_login' type='text' value='<?php echo $personne->per_login; ?>' required/> 
+			Login : <input name='per_login' id='per_login' type='text' value='<?php echo $personne->getPerLogin(); ?>' required/> 
 			<br /> 
 			Mot de passe actuel : <input name='per_mdp' id='per_mdp' type='password' value='' />
 			<br />
@@ -61,7 +61,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 	$personne = $personneManager->getPersonneParId ( $_SESSION ['per_num'] );
 	$nouvPersonne = new Personne ( $_POST );
 	$nouvPersonne->setPerNum ( $_SESSION ['per_num'] );
-	$nouvPersonne->setPerPwd ( $personne->per_pwd );
+	$nouvPersonne->setPerPwd ( $personne->setPerPwd($_SESSION['per_mdp']) );
 	
 	if (! empty ( $_POST ['per_mdp'] )) 
 	{

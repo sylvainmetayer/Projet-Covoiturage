@@ -46,12 +46,12 @@ class DivisionManager{
 		$requete->closeCursor();
 		if ($resultat != null)
 		{
-			return $resultat;
-			// on retourne un objet !!
+			return new Division($resultat);
+			// on retourne un objet Division
 		}
 		else
 		{
-			//Division demandÃ©e non trouvÃ©e
+			//Division demandée non trouvée
 			return null;
 		}
 	}

@@ -49,12 +49,11 @@ class PersonneManager {
 		$requete->bindValue ( ':mail', $personne->getPerMail () );
 		$requete->bindValue ( ':login', $personne->getPerLogin () );
 		$requete->bindValue ( ':pwd', $personne->getPerPwd () );
-		// POUR GERER LE TYPE DE PERSONNE
-		// Reprendre comme l'ajout d'une personne, c'est à dire diviser en deux requete, une pour la personne, et une pour l'étudiant/salarié
+		
 		$requete->bindValue ( ':per_num', $personne->getPerNum () ); // permet de modifier la bonne personne
 		
 		$retour = $requete->execute ();
-		return $personne->getPerNum (); // pour récupérer l'id de l'étudiant/salarié à modifier
+		return $personne->getPerNum (); // pour r�cup�rer l'id de l'étudiant/salarié à modifier
 	}
 	
 	// A TESTER
@@ -100,8 +99,8 @@ class PersonneManager {
 	
 		if ($resultat != null)
 		{
-			return $resultat;
-			//On retourne un objet
+			return new Personne($resultat);
+			//On retourne un objet Personne
 		}
 		else
 		{
@@ -121,7 +120,8 @@ class PersonneManager {
 		if ($resultat != null)
 		{
 			var_dump($resultat);
-			return $resultat;
+			return new Personne($resultat);
+			//On retourne un objet Personne
 		}
 		else
 		{

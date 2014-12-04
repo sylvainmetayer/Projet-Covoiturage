@@ -66,4 +66,18 @@ class EtudiantManager
 		$requete->closeCursor();
 		return $etudiant;
 	}
+	
+	// A TESTER
+	//per_num, dep_num, div_num
+	public function modifierEtudiant($etudiant, $idPersonne) {
+		$requete = $this->db->prepare ( 'UPDATE etudiant SET div_num=\':div_num\', dep_num=\':dep_num\'
+		WHERE per_num = :per_num' );
+	
+		$requete->bindValue ( ':div_num', $etudiant->getDivNum());
+		$requete->bindValue ( ':dep_num', $etudiant->getDepNum() );
+		$requete->bindValue ( ':per_num', $idPersonne ); // permet de modifier la bonne personne
+	
+		$retour = $requete->execute ();
+		return $retour;
+	}
 }

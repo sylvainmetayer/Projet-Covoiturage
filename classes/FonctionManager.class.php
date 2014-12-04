@@ -44,8 +44,8 @@ class FonctionManager{
 		$requete->closeCursor();
 		if ($resultat != null)
 		{
-			return $resultat;
-			// on retourne un objet !!
+			return new Fonction($resultat);
+			// on retourne un objet Fonction
 		}
 		else
 		{

@@ -47,7 +47,7 @@ class DepartementManager{
 		$requete->closeCursor();
 		if ($resultat != null)
 		{
-			return $resultat;
+			return new Departement($resultat);
 			// on retourne un objet !!
 		}
 		else

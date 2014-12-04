@@ -58,8 +58,7 @@ class SalarieManager{
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 		$donnees= $requete->fetch(PDO::FETCH_ASSOC);
-		$salarie=new Salarie($donnees);
 		$requete->closeCursor();
-		return $salarie;
+		return new Salarie($donnees);
 	}
 }

@@ -23,7 +23,7 @@ class ParcoursManager{
 	
 		if ($resultat != null) //Le parcours existe déjà
 		{
-			return $resultat;
+			return new Parcours($resultat);
 			// Il s'agit d'un objet !!
 		}
 		else
