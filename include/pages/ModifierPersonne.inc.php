@@ -59,9 +59,11 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 {
 	// TODO Gestion des mots de passe
 	$personne = $personneManager->getPersonneParId ( $_SESSION ['per_num'] );
-	$nouvPersonne = new Personne ( $_POST );
-	$nouvPersonne->setPerNum ( $_SESSION ['per_num'] );
-	$nouvPersonne->setPerPwd ( $personne->setPerPwd($_SESSION['per_mdp']) );
+	$PersonneModifie = new Personne ( $_POST );
+	//permet de recuperer tout les champs
+	
+	$PersonneModifie->setPerNum ( $_SESSION ['per_num'] );
+	$PersonneModifie->setPerPwd ( $personne->setPerPwd($_SESSION['per_mdp']) );
 	
 	if (! empty ( $_POST ['per_mdp'] )) 
 	{
@@ -76,9 +78,9 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] ))
 			{
 				// Alors tout est bon
 				$nouvMdp = sha1 ( sha1 ( $nouv1 ) . SEL );
-				$nouvPersonne->setPwd ( $nouvMdp );
+				$PersonneModifie->setPwd ( $nouvMdp );
 				
-				$personneManager->updatePersonne ( $nouvPersonne );
+				$personneManager->updatePersonne ( $PersonneModifie );
 				echo  "Personne mise à jour" ;
 			} else 
 			{

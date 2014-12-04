@@ -28,7 +28,11 @@
 			</div>
 			</div>
 			<div id="connect">
-				<a href="index.php?page=11">Connexion</a>
+				<?php if (!empty($_SESSION['per_login'])) { //la personne est connectée ?>
+					<a href="index.php?page=12">Bonjour <?php ?>Deconnexion </a>
+				<?php } else { //la personne n'est pas connectée ?>
+					<a href="index.php?page=11">Bonjour <?php ?>Connexion </a>
+				<?php }?>
 			</div>
 	</div>
 	
