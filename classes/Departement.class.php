@@ -1,6 +1,6 @@
 <?php
 class Departement{
-	private $dep_num;
+	private $dep_num; 
 	private $dep_nom;
 	private $vil_num;
 	
