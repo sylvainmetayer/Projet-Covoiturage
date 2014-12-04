@@ -88,7 +88,7 @@ else{
 			</center>
 		<?php 
 		}else {?>
-			<p><img src="image/erreur.png" class="imagErreur" alt="Erreur"/> Cette personne ne fait partie ni des 굵diants, ni des salari곮</p>
+			<p><img src="image/erreur.png" class="imagErreur" alt="Erreur"/> Cette personne ne fait partie ni des étudiants, ni des salariés</p>
 		<?php
 		}
 	}
