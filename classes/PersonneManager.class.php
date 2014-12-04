@@ -136,7 +136,7 @@ class PersonneManager {
 		$requete = $this->db->prepare ( $sql );
 		$requete->bindValue ( ':login', $login );
 		$requete->bindValue ( ':mdp', (sha1 ( sha1 ( $mdp ) . SEL )) );
-		$requete->bindValue ( ':mdp', $mdp );
+		//$requete->bindValue ( ':mdp', $mdp );
 		
 		$requete->execute ();
 		$resultat = $requete->fetch ( PDO::FETCH_OBJ );
