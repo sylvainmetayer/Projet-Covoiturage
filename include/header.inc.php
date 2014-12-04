@@ -1,8 +1,5 @@
 <?php
-
 session_start ();
-//$pdo = new Mypdo ();
-//$personneManager = new PersonneManager ( $pdo );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -34,11 +31,8 @@ $title = "Bienvenue sur le site de covoiturage de l'IUT.";
 			</div>
 		</div>
 		<div id="connect">
-				<?php if (!empty($_SESSION['per_login'])) { //la personne est connect�e ?>
-					<a href="index.php?page=12">Bonjour <?php
-					
-echo $personneManager->getPersonneParId ( $idPersonne )->getNomPersonne () . " " . $personneManager->getPersonneParId ( $idPersonne )->getPrenomPersonne ();
-					?> || Deconnexion </a>
+				<?php if (!empty($_SESSION['per_login_connecte'])) { //la personne est connect�e ?>
+					<a href="index.php?page=12">Bonjour <?php echo $_SESSION['per_prenom_connecte']; ?> || Deconnexion </a>
 				<?php } else { //la personne n'est pas connect�e ?>
 					<a href="index.php?page=11">Connexion </a>
 				<?php }?>
