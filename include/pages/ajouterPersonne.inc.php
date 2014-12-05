@@ -139,26 +139,30 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	// var_dump($_SESSION['Personne']);
 	$idPersonne = $PersonneManager->add ( $_SESSION ['Personne'] );
 	// var_dump($idPersonne);
-	
-	if ($_SESSION ['typePersonne'] == 'etudiant') {
-		// On va ajouter l'étudiant
-		
-		$etudiant = new Etudiant ( array (
-				'dep_num' => $_POST ['choix_departement'],
-				'div_num' => $_POST ['choix_departement'] 
-		) );
-		$retour = $EtudiantManager->add ( $etudiant, $idPersonne );
-	} else if ($_SESSION ['typePersonne'] == 'personnel') {
-		// On va ajouter un salarie
-		
-		$salarie = new Salarie ( array (
-				'sal_telprof' => $_POST ['tel_pro'],
-				'fon_num' => $_POST ['choix_fonction'] 
-		) );
-		
-		$retour = $SalarieManager->add ( $salarie, $idPersonne );
+	if ($idPersonne != null) { //le login n'existe pas déjà
+		if ($_SESSION ['typePersonne'] == 'etudiant') {
+			// On va ajouter l'étudiant
+			
+			$etudiant = new Etudiant ( array (
+					'dep_num' => $_POST ['choix_departement'],
+					'div_num' => $_POST ['choix_departement'] 
+			) );
+			$retour = $EtudiantManager->add ( $etudiant, $idPersonne );
+		} else if ($_SESSION ['typePersonne'] == 'personnel') {
+			// On va ajouter un salarie
+			
+			$salarie = new Salarie ( array (
+					'sal_telprof' => $_POST ['tel_pro'],
+					'fon_num' => $_POST ['choix_fonction'] 
+			) );
+			
+			$retour = $SalarieManager->add ( $salarie, $idPersonne );
+		}
+	} else {
+		//le login existe déjà
+		$retour = null;
+		echo "<p> Ce login est d&eacute;j&agrave; utilis&eacute;, merci d'en choisir un autre. </p> <br/>";
 	}
-	
 	if ($retour != null) {
 		// OK
 		?>

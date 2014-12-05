@@ -8,6 +8,14 @@ class PersonneManager {
 	// Cette fonction va ajouter une personne, puis retourner l'id de la personne ajouté,
 	// ce qui permettra de faire l'ajout de l'étudiant/salarié
 	public function add($personne) {
+		
+		$testLogin = $this->VerifLogin($personne->getPerLogin());
+		
+		if ($testLogin != null) { //le login existe déjà
+			return null;
+			//On ajoute pas la personne 
+		}
+		
 		$requete = $this->db->prepare ( 'INSERT INTO personne (per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd) VALUES (:nom, :prenom, :tel, :mail, :login, :pwd);' );
 		
 		$requete->bindValue ( ':nom', $personne->getNomPersonne () );
@@ -21,6 +29,29 @@ class PersonneManager {
 		return $this->db->lastInsertId ();
 		// Pour ajouter par la suite un etudiant/salarié
 	}
+	
+	public function VerifLogin($login) //pour ne pas ajouter deux fois une personne avec le même login
+	{
+		$sql = "SELECT * FROM personne WHERE per_login=:per_login";
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(":per_login", $login);
+	
+		$requete->execute();
+	
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+	
+		if ($resultat != null) //Le login existe déjà
+		{
+			return new Parcours($resultat);
+			// Il s'agit d'un objet Personne
+		}
+		else
+		{
+			return null;
+			//Le login n'a pas été trouvé, il n'existe donc pas
+		}
+	}
+	
 	public function getAllPersonnes() {
 		$listePersonne = array ();
 		
