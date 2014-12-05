@@ -85,7 +85,7 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		// var_dump ( $propose );
 		// var_dump ( $parcours );
 		// /VARDUMP TEST
-		$controleDate = $proposeManager->CtrlDate ( $propose->getDate () );
+		//$controleDate = $proposeManager->CtrlDate ( $propose->getDate () );
 		//on mock le $controleDate pour forcer le passage, en attendant que la fonction CtrlDate marche
 		$controleDate = true;
 		if ($controleDate == false) { // date incorrecte

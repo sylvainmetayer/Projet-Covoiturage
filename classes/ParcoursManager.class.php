@@ -92,5 +92,21 @@ class ParcoursManager{
 		return $listeVilles;
 	}
 	
+	public function getParcoursParId($idParcours) {
+		$sql = "SELECT par_num, par_km, vil_num1, vil_num2 FROM parcours WHERE par_num=:par_num";
+		$requete = $this->db->prepare ( $sql );
+		$requete->bindValue ( ':par_num', $idParcours );
+	
+		$requete->execute ();
+		$resultat = $requete->fetch ( PDO::FETCH_OBJ );
+	
+		if ($resultat != null) {
+			return new Parcours( $resultat );
+			// On retourne un objet Parcours
+		} else {
+			return null;
+		}
+		$requete->closeCursor ();
+	}
 	
 }

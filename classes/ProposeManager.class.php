@@ -68,5 +68,111 @@ class ProposeManager{
 		}
 		
 	}
+	public function getAllDeparts(){
+		$listeDeparts = array();
+		
+		$sql='SELECT vil_num, vil_nom FROM Ville v, Propose pr, Parcours pa 
+				Where pr.pro_sens = 0
+				And pr.par_num = pa.par_num
+				And pa.vil_num1 = v.vil_num
+				ORDER BY vil_num';
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		
+		while($depart=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeDeparts[]=new Ville($depart);
+		}
+		
+		$requete->closeCursor();
+		
+		$sql='SELECT vil_num, vil_nom FROM Ville v, Propose pr, Parcours pa
+				Where pr.pro_sens = 1
+				And pr.par_num = pa.par_num
+				And pa.vil_num2 = v.vil_num
+				ORDER BY vil_num';
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		
+		while($depart=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeDeparts[]=new Ville($depart);
+		}
+		
+		$requete->closeCursor();
+		
+		return $listeDeparts;
+	}
+	
+	public function getAllArrive($depart){
+		$listeArrive = array();
+	
+		$sql='SELECT vil_num, vil_nom FROM Ville v, Propose pr, Parcours pa
+				Where pr.pro_sens = 0
+				And pr.par_num = pa.par_num
+				And pa.vil_num2 = v.vil_num
+				And pa.vil_num1 = :vil_num1
+				ORDER BY vil_num';
+		$requete=$this->db->prepare($sql);
+		$requete->bindValue(":vil_num1", $depart);
+		$requete->execute();
+	
+		while($arrive=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeArrive[]=new Ville($arrive);
+		}
+	
+		$requete->closeCursor();
+	
+		$sql='SELECT vil_num, vil_nom FROM Ville v, Propose pr, Parcours pa
+				Where pr.pro_sens = 1
+				And pr.par_num = pa.par_num
+				And pa.vil_num1 = v.vil_num
+				And pa.vil_num2 = :vil_num2
+				ORDER BY vil_num';
+		$requete=$this->db->prepare($sql);
+		$requete->bindValue(":vil_num2", $depart);
+		$requete->execute();
+	
+		while($arrive=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeArrive[]=new Ville($arrive);
+		}
+	
+		$requete->closeCursor();
+	
+		return $listeArrive;
+	}
+	
+	public function getDetailsTrajet($vil_num1, $vil_num2, $date, $precision, $heure){
+		$listeTrajet= array();
+		
+		$sql="SELECT DISTINCT pr.par_num, pr.per_num, pr.pro_date, pr.pro_time, pr.pro_place, pr.pro_sens 
+				FROM Ville v, Propose pr, Parcours pa, Personne pe
+				Where pa.vil_num1 = :vil_num1
+				And pa.vil_num2 = :vil_num2
+				And pr.pro_date between ':pro_date' - :precision and ':pro_date' + :precision
+				And pr.pro_time >= :pro_time
+				ORDER BY par_num";
+		$requete=$this->db->prepare($sql);
+		
+		$requete->bindValue(":vil_num1", $vil_num1);
+		$requete->bindValue(":vil_num2", $vil_num2);
+		$requete->bindValue(":pro_date", $date);
+		$requete->bindValue(":pro_time", $heure);
+		$requete->bindValue(":precision", $precision);
+		
+		$requete->execute();
+		
+		while($trajet=$requete->fetch(PDO::FETCH_OBJ))
+		{
+			$listeTrajet[]=new Propose($trajet);
+		}
+		
+		$requete->closeCursor();
+		
+		return $listeTrajet;
+		
+	}
 	
 }
