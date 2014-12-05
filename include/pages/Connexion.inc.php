@@ -1,4 +1,4 @@
-<h1>Pour vous connecter</h1>
+
 
 <?php
 $pdo = new Mypdo ();
@@ -9,13 +9,14 @@ $nb2 = rand ( 1, 9 );
 
 if (empty ( $_POST ['reponse'] )) {
 	?>
+	<h1>Pour vous connecter</h1>
 
 <form action="#" method="post">
 	Login : <input type="text" name="per_login" id="per_login"> <br /> Mot
 	de passe : <input type="password" name="per_pwd" id="per_pwd"> <br />
 
 	<p class="captcha">
-		Merci de résoudre le calcul suivant pour confirmer que vous n'&ecirc;tes pas
+		Merci de r&eacute;soudre le calcul suivant pour confirmer que vous n'&ecirc;tes pas
 		un robot <br /> <img src="image/nb/<?php echo $nb1 ?>.jpg" /> + <img
 			src="image/nb/<?php echo $nb2 ?>.jpg" /> =
 	</p>
@@ -70,7 +71,11 @@ if (empty ( $_POST ['reponse'] )) {
 		$_SESSION ["per_num_connecte"] = ($personneConnectee->getPerNum ());
 		$_SESSION ["per_prenom_connecte"] = ($personneConnectee->getPrenomPersonne ());
 		//var_dump ( $personneConnectee );
-		echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
+		//echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
+		?>
+		<h3> Bienvenue <?php echo $_SESSION ["per_prenom_connecte"] ?> ! Vous serez redirig&eacute; dans 3 secondes...</h3>
+		<META HTTP-EQUIV="Refresh" CONTENT="3;URL=index.php">
+		<?php 
 		/*
 		 * Au final, on dispose de 3 variable de sessions : 1 pour les conditions si on est connecte :
 		 * per_login_connecte

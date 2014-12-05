@@ -6,7 +6,7 @@ if (empty ( $_POST ['choix_ville'] )) {
 <div id='ville'>
 	<form name='choix_ville' id='choix_ville' action='#' method='post'>
 		<p>
-			Nom : <input type='text' placeholder='Ex : Bordeaux'
+			Nom : <input type='text' class='bouton' placeholder='Ex : Bordeaux'
 				name='choix_ville'> <input type='submit' value='Valider'>
 
 <?php

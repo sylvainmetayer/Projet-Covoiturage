@@ -15,7 +15,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	?>
 <form action="#" method="POST">
-	Personne &acirc; modifier : <select name="per_num" id="per_num">
+	Personne &acirc; modifier : <select class='bouton' name="per_num" id="per_num">
 				<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
