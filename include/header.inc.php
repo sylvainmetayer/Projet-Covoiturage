@@ -27,13 +27,13 @@ $title = "Bienvenue sur le site de covoiturage de l'IUT.";
 				</a>
 			</div>
 			<div class="colonne">
-				Covoiturage de l'IUT,<br />Partagez plus que votre v�hicule !!!
+				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
 			</div>
 		</div>
 		<div id="connect">
 				<?php if (!empty($_SESSION['per_login_connecte'])) { //la personne est connect�e ?>
 					<a href="index.php?page=12">Bonjour <?php echo $_SESSION['per_prenom_connecte']; ?> || Deconnexion </a>
-				<?php } else { //la personne n'est pas connect�e ?>
+				<?php } else { //la personne n'est pas connectée ?>
 					<a href="index.php?page=11">Connexion </a>
 				<?php } ?>
 			</div>
