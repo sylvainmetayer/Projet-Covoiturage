@@ -1,7 +1,7 @@
 <h1>Rechercher un trajet</h1>
 <?php
 if (! empty ( $_SESSION ['per_login_connecte'] )) {
-	// Personne connectée.
+	// Personne connectée. 
 	?>
 
 <?php
