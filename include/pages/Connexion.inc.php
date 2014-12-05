@@ -1,24 +1,25 @@
-
-
 <?php
 $pdo = new Mypdo ();
 $personneManager = new PersonneManager ( $pdo );
 
 $nb1 = rand ( 1, 9 );
 $nb2 = rand ( 1, 9 );
+// choix aléatoires des deux nombres pour le captcha
 
 if (empty ( $_POST ['reponse'] )) {
 	?>
-	<h1>Pour vous connecter</h1>
+<h1>Pour vous connecter</h1>
 
 <form action="#" method="post">
-	Login : <input type="text" name="per_login" id="per_login"> <br /> Mot
-	de passe : <input type="password" name="per_pwd" id="per_pwd"> <br />
+	<label for=per_login'>Login : </label><input type="text"
+		name="per_login" id="per_login"> <br /> <label for='per_pwd'>Mot de
+		passe : </label><input type="password" name="per_pwd" id="per_pwd"> <br />
 
 	<p class="captcha">
-		Merci de r&eacute;soudre le calcul suivant pour confirmer que vous n'&ecirc;tes pas
-		un robot <br /> <img src="image/nb/<?php echo $nb1 ?>.jpg" alt='numero' /> + <img
-			src="image/nb/<?php echo $nb2 ?>.jpg" alt='numero'/> =
+		Merci de r&eacute;soudre le calcul suivant pour confirmer que vous
+		n'&ecirc;tes pas un robot <br /> <img
+			src="image/nb/<?php echo $nb1 ?>.jpg" alt='numero' /> + <img
+			src="image/nb/<?php echo $nb2 ?>.jpg" alt='numero' /> =
 	</p>
 
 	<input type="hidden" name="nb1" value="<?php echo $nb1; ?>" /> <input
@@ -53,7 +54,7 @@ if (empty ( $_POST ['reponse'] )) {
 		// pour eviter des erreurs.
 	} else {
 		$captcha = true;
-		//le captcha est correct
+		// le captcha est correct
 	}
 	
 	if ($connexionOK == false) { // mauvais mot de passe/identifiant
@@ -65,17 +66,17 @@ if (empty ( $_POST ['reponse'] )) {
 <?php
 	}
 	
-	if (($connexionOK == $resultat) && ($connexionOK == true) && $captcha==true) { // le captcha est bon et les id/mdp aussi
+	if (($connexionOK == $resultat) && ($connexionOK == true) && $captcha == true) { // le captcha est bon et les id/mdp aussi
 		$_SESSION ['per_login_connecte'] = $_POST ['per_login'];
 		$personneConnectee = $personneManager->getPersonneParLogin ( $_SESSION ['per_login_connecte'] );
 		$_SESSION ["per_num_connecte"] = ($personneConnectee->getPerNum ());
 		$_SESSION ["per_prenom_connecte"] = ($personneConnectee->getPrenomPersonne ());
-		//var_dump ( $personneConnectee );
-		//echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
+		// var_dump ( $personneConnectee );
+		// echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
 		?>
 		<h3> Bienvenue <?php echo $_SESSION ["per_prenom_connecte"] ?> ! Vous serez redirig&eacute; dans 3 secondes...</h3>
 		<META HTTP-EQUIV="Refresh" CONTENT="3;URL=index.php">
-		<?php 
+		<?php
 		/*
 		 * Au final, on dispose de 3 variable de sessions : 1 pour les conditions si on est connecte :
 		 * per_login_connecte

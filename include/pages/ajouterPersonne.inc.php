@@ -23,16 +23,19 @@ if (
 <div id='personne'>
 	<form name='ajouter_personne' id='ajouter_personne' action='#'
 		method='post'>
-		Nom : <input type='text' placeholder='Ex : Michu' name='nom'
-			class='champ' required> Pr&eacute;nom : <input type='text'
+		<label for='nom'>Nom : </label> <input type='text'
+			placeholder='Ex : Michu' name='nom' class='champ' required> <label
+			for='prenom'>Pr&eacute;nom : </label><input type='text'
 			placeholder='Ex : Sarah' name='prenom' class='champ' required> <br />
-		T&eacute;l&eacute;phone : <input type='text' placeholder='0xxxxxxxxx'
-			name='tel' class='champ' pattern='[0][0-9]{9}' required> Mail : <input
+		<label for='tel'>T&eacute;l&eacute;phone : </label><input type='text'
+			placeholder='0xxxxxxxxx' name='tel' class='champ'
+			pattern='[0][0-9]{9}' required> <label for='mail'>Mail :</label> <input
 			type='mail' placeholder='sarah.michu@example.fr' name='mail'
-			class='champ' required /> <br /> Login : <input type='text'
-			placeholder='Ex : Sarah87' name='login' class='champ' required> Mot
-		de passe : <input type='password' placeholder='********' name='mdp'
-			class='champ' required /> <br /> Cat&eacute;gorie :
+			class='champ' required /> <br /> <label for='login'>Login :</label> <input
+			type='text' placeholder='Ex : Sarah87' name='login' class='champ'
+			required> <label for='mdp'>Mot de passe :</label> <input
+			type='password' placeholder='********' name='mdp' class='champ'
+			required /> <br /> <label for='typePersonne'>Cat&eacute;gorie :</label>
 		<!-- Par défaut, on met l'etudiant coché afin d'être sur qu'une case soit cochée.-->
 		<input type='radio' name='typePersonne' class='champ' value='etudiant'
 			checked='checked' /> Etudiant <input type='radio' name='typePersonne'
@@ -73,10 +76,11 @@ if (
 <div id='salarie'>
 	<form name='ajouter_salarie' id='ajouter_salarie' action='#'
 		method='post'>
-		Numero de t&eacute;l&eacute;phone professionnel : <input type='text'
-			placeholder='0xxxxxxxxx' name='tel_pro' class='champ'
-			pattern='[0][0-9]{9}' required /> Fonction : <select
-			name=choix_fonction class='champ'> 
+		<label for='tel_pro'>Numero de t&eacute;l&eacute;phone professionnel :
+		</label><input type='text' placeholder='0xxxxxxxxx' name='tel_pro'
+			class='champ' pattern='[0][0-9]{9}' required /> <label
+			for='choix_fonction'>Fonction :</label> <select name=choix_fonction
+			class='champ'> 
 					<?php
 		// Listage de toutes les fonctions
 		$pdo = new MyPdo ();
@@ -100,7 +104,8 @@ if (
 <div id='etudiant'>
 	<form name='ajouter_etudiant' id='ajouter_etudiant' action='#'
 		method='post'>
-		Année : <select name=choix_annee class='champ'> 
+		<label for='choix_annee'>Année :</label> <select name=choix_annee
+			class='champ'> 
 					<?php
 		// Listage de toutes les années
 		$pdo = new MyPdo ();
@@ -112,7 +117,8 @@ if (
 						<?php
 		}
 		?>
-				</select> Departement : <select name=choix_departement class='champ'>
+				</select> <label for=choix_departement'>Departement :</label> <select
+			name=choix_departement class='champ'>
 					<?php
 		// Listage de toutes les departements
 		$pdo = new MyPdo ();
@@ -137,9 +143,10 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	
 	// On va ajouter une personne, et récupérer son id
 	// var_dump($_SESSION['Personne']);
+	
 	$idPersonne = $PersonneManager->add ( $_SESSION ['Personne'] );
 	// var_dump($idPersonne);
-	if ($idPersonne != null) { //le login n'existe pas déjà
+	if ($idPersonne != null) { // le login n'existe pas déjà
 		if ($_SESSION ['typePersonne'] == 'etudiant') {
 			// On va ajouter l'étudiant
 			
@@ -159,7 +166,7 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 			$retour = $SalarieManager->add ( $salarie, $idPersonne );
 		}
 	} else {
-		//le login existe déjà
+		// le login existe déjà
 		$retour = null;
 		echo "<p> Ce login est d&eacute;j&agrave; utilis&eacute;, merci d'en choisir un autre. </p> <br/>";
 	}
