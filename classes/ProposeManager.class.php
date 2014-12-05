@@ -48,24 +48,25 @@ class ProposeManager{
 	// sinon false (date inferieure a la date du jour
 	//La fonction de controle de date ne marche pas.
 	public function CtrlDate($date) {
-		// date à tester
-		$date = date('Y-m-d'); 
-		$now = new DateTime(); //Date du jour 
-		$now = $now->format('Y-m-d');
+// 		// date à tester
+// 		$date = new Date($date);
+// 		$date = $date->format('Y-m-d');
+// 		$now = new DateTime(); //Date du jour 
+// 		$now = $now->format('Y-m-d');
 		
-		//$date = new DateTime( $date );
-		$date = new Date($date);
-		$date = $date->format('Y-m-d');
+// 		//$date = new DateTime( $date );
 		
-		// Controle que la date propose est egale ou supérieure à la date du jour		
-		if( $now <= $date ) {
-			//Correct, la date du jour est inferieure ou egale a la date propose
-			return true;
-		}
-		else { 
-			//la date proposée est inferieure a la date du jour
-			return false;	
-		}
+		
+		
+// 		// Controle que la date propose est egale ou supérieure à la date du jour		
+// 		if( $now <= $date ) {
+// 			//Correct, la date du jour est inferieure ou egale a la date propose
+// 			return true;
+// 		}
+// 		else { 
+// 			//la date proposée est inferieure a la date du jour
+// 			return false;	
+// 		}
 		
 	}
 	
