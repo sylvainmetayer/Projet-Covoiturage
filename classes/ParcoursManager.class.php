@@ -24,7 +24,7 @@ class ParcoursManager{
 		if ($resultat != null) //Le parcours existe déjà
 		{
 			return new Parcours($resultat);
-			// Il s'agit d'un objet !!
+			// Il s'agit d'un objet Parcours
 		}
 		else
 		{
@@ -64,8 +64,6 @@ class ParcoursManager{
 		//var_dump($retour);
 		return $retour;
 	}
-
-	
 	
 	// A FAIRE
 	public function getAllParcours()
@@ -75,7 +73,7 @@ class ParcoursManager{
 		$sql = 'SELECT par_num, vil_num1, vil_num2, par_km FROM parcours';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
-		//truc multiple à g�rer
+		//truc multiple à gérer
 		while ($nom_vil = $requete->fetch(PDO::FETCH_OBJ))
 		{
 			$listeParcours[] = new parcours($nom_vil);
@@ -83,5 +81,25 @@ class ParcoursManager{
 		return $listeParcours;
 		$requete->closeCursor();
 	}
+	
+	public function getVilleArriveePossible($vil_num1)
+	{
+		$listeVilles = array(); //tableau d'objet
+		$villeManager = new VilleManager($this->db);
+		$sql = "SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2=:vil_num1 UNION SELECT vil_num2 FROM parcours WHERE vil_num1=:vil_num1";
+		//on met dans une même colonne les resultat des parcours dans les deux sens afin de savoir les ville proposables
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(":vil_num1", $vil_num1);
+	
+		$requete->execute();
+	
+		while($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+			//fetch assoc, car fetch obj merde. 
+			$listeVilles[] = $villeManager->getVilleParId($ligne["vil_num"]);
+		}
+	
+		return $listeVilles;
+	}
+	
 	
 }

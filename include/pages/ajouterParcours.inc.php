@@ -71,15 +71,15 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 {
 		?>  
 		<p>
-			<img src="image/valid.png" alt='valid' /> Le parcours a bien �t�
-			ajout�
+			<img src="image/valid.png" alt='valid' /> Le parcours a bien été
+			ajouté
 		</p>
 	<?php
 	} else {
 		?>  
 		<p>
-			<img src="image/erreur.png" alt='erreur' /> Le parcours n'a pas �t�
-			ajouté
+			<img src="image/erreur.png" alt='erreur' /> Le parcours n'a pas été
+			ajouté, car il existe déjà.
 		</p>
 	<?php
 	}

@@ -6,22 +6,25 @@ class ProposeManager{
 		$this->db=$db;
 	}
 	
-	// A TESTER
+	// A TESTER - Erreur : contrainte d'intégrité....
 	public function add($propose) {
 		$requete = $this->db->prepare (
-		'INSERT INTO PROPOSE (par_num, per_num, pro_date, pro_time, pro_place, pro_sens) VALUES (:par_num, :per_num , :pro_date, :pro_time, :pro_place, :pro_sens);');
+		'INSERT INTO PROPOSE (par_num, per_num, pro_date, pro_time, pro_place, pro_sens) 
+				VALUES (:par_num, :per_num , :pro_date, :pro_time, :pro_place, :pro_sens);');
 		$requete->bindValue(':par_num', $propose->getParNum());
 		$requete->bindValue(':per_num', $propose->getPerNum());
 		$requete->bindValue(':pro_date', ($propose->getDate()));
 		$requete->bindValue(':pro_time', $propose->getTime());
 		$requete->bindValue(':pro_place', $propose->getPlace());
 		$requete->bindValue(':pro_sens', $propose->getSens());
+
+		var_dump($requete);
 		
 		$retour=$requete->execute();
 		return $retour;
 	}
 	
-	// A TESTER
+	// A TESTER - Vraiment utile ?
 	public function getAllPropose() {
 		$listePropose = array();
 		
@@ -37,5 +40,5 @@ class ProposeManager{
 		$requete->closeCursor();
 		return $listePropose;
 	}
-
+	
 }
