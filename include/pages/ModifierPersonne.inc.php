@@ -15,7 +15,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	?>
 <form action="#" method="POST">
-	Personne &acirc; modifier : <select class='bouton' name="per_num" id="per_num">
+	Personne &acirc; modifier : <select class='champ' name="per_num" id="per_num">
 				<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -33,22 +33,22 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	$_SESSION ['per_num'] = $_POST ['per_num'];
 	?>
 <form action="#" method="POST">
-	Nom : <input name='per_nom' id='per_nom' type='text'
-		value="<?php echo $personne->getNomPersonne();?>" required /> <br />
-	Prenom : <input name='per_prenom' id='per_prenom' type='text'
+	Nom : <input name='per_nom' class='champ' id='per_nom' type='text'
+		value="<?php echo $personne->getNomPersonne();?>" required />
+	Prenom : <input name='per_prenom' class='champ' id='per_prenom' type='text'
 		value='<?php echo $personne->getPrenomPersonne(); ?>' required /> <br />
-	T&eacute;l&eacute;phone : <input name='per_tel' id='per_tel' type='text'
-		value='<?php echo $personne->getPerTel(); ?>' required /> <br /> Mail
-	: <input name='per_mail' id='per_mail' type='text'
+	T&eacute;l&eacute;phone : <input class='champ' name='per_tel' id='per_tel' type='text'
+		value='<?php echo $personne->getPerTel(); ?>' required />  Mail
+	: <input name='per_mail' class='champ' id='per_mail' type='text'
 		value='<?php echo $personne->getPerMail(); ?>' required /> <br />
-	Login : <input name='per_login' id='per_login' type='text'
-		value='<?php echo $personne->getPerLogin(); ?>' required /> <br /> Mot
-	de passe actuel : <input name='per_mdp' id='per_mdp' type='password'
+	Login : <input name='per_login' class='champ' id='per_login' type='text'
+		value='<?php echo $personne->getPerLogin(); ?>' required />  Mot
+	de passe actuel : <input name='per_mdp' class='champ' id='per_mdp' type='password'
 		value='' /> <br />
 	<!-- On saisie deux fois afin d'être sur que la personne saississe le bon mdp-->
-	Nouveau mot de passe : <input name='per_nouveau' id='per_nouveau'
-		type='password' value='' /> <br /> Retaper le mot de passe : <input
-		name='per_confirmation' id='per_confirmation' type='password' value='' />
+	Nouveau mot de passe : <input name='per_nouveau' class='champ' id='per_nouveau'
+		type='password' value='' />  Retaper le mot de passe : <input
+		name='per_confirmation' class='champ' id='per_confirmation' type='password' value='' />
 	<br /> <input type='submit' value='Modifier' />
 </form>
 <?php

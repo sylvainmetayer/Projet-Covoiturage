@@ -17,8 +17,8 @@ if (empty ( $_POST ['reponse'] )) {
 
 	<p class="captcha">
 		Merci de r&eacute;soudre le calcul suivant pour confirmer que vous n'&ecirc;tes pas
-		un robot <br /> <img src="image/nb/<?php echo $nb1 ?>.jpg" /> + <img
-			src="image/nb/<?php echo $nb2 ?>.jpg" /> =
+		un robot <br /> <img src="image/nb/<?php echo $nb1 ?>.jpg" alt='numero' /> + <img
+			src="image/nb/<?php echo $nb2 ?>.jpg" alt='numero'/> =
 	</p>
 
 	<input type="hidden" name="nb1" value="<?php echo $nb1; ?>" /> <input
