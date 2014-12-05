@@ -1,4 +1,4 @@
-<h1>Supprimer des personnes enregistrées</h1>
+<h1>Supprimer des personnes enregistrï¿½es</h1>
 <?php
 $pdo = new Mypdo ();
 $personneManager = new PersonneManager ( $pdo );
@@ -6,7 +6,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] )) {
 	?>
 <form action="#" method="POST">
-	Personne à supprimer : <select name="per_num" id="per_num">
+	Personne ï¿½ supprimer : <select name="per_num" id="per_num">
 	<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -21,10 +21,18 @@ if (empty ( $_POST ['per_num'] )) {
 } else {
 	
 	$personneManager->supprimerPersonne ( $_POST ['per_num'] );
+	if (!empty($_SESSION ['per_login_connecte'])) {
+		//une personne est connectÃ©e. 
+		if ( ($_SESSION ["per_num_connecte"] == $_POST ['per_num'])) {
+			//Alors, la personne supprimÃ©e est la personne connectÃ©e. 
+			session_destroy();
+			//on quitte la session.
+		}
+	}
 	// TOOD img a afficher
 	?>
 <img src='../../image/valid.png' alt='OK' />
-<p>Personne supprimée</p>
+<p>Personne supprimï¿½e</p>
 <?php
 }
 ?>

@@ -67,8 +67,7 @@ if (empty ( $_POST ['reponse'] )) {
 		$_SESSION ["per_prenom_connecte"] = ($personneConnectee->getPrenomPersonne ());
 		//var_dump ( $personneConnectee );
 		echo "<p>Bienvenue " . $personneConnectee->getPrenomPersonne () . " !</p>";
-		echo "<p>Vous serez redirigé vers la page d'accueil dans 3 secondes</p>";
-		header('Refresh: 3; ./');
+		
 		/*
 		 * Au final, on dispose de 3 variable de sessions : 1 pour les conditions si on est connecte :
 		 * per_login_connecte
