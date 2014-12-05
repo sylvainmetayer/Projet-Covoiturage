@@ -6,14 +6,17 @@ class ProposeManager{
 		$this->db=$db;
 	}
 	
-	// A TESTER - Erreur : contrainte d'intégrité....
+	//OK
 	public function add($propose) {
+		
+		$myDateTime = DateTime::createFromFormat('d-m-Y', $propose->getDate());
+		var_dump($myDateTime);
 		$requete = $this->db->prepare (
 		'INSERT INTO PROPOSE (par_num, per_num, pro_date, pro_time, pro_place, pro_sens) 
 				VALUES (:par_num, :per_num , :pro_date, :pro_time, :pro_place, :pro_sens);');
 		$requete->bindValue(':par_num', $propose->getParNum());
 		$requete->bindValue(':per_num', $propose->getPerNum());
-		$requete->bindValue(':pro_date', ($propose->getDate()));
+		$requete->bindValue(':pro_date', ($myDateTime->date));
 		$requete->bindValue(':pro_time', $propose->getTime());
 		$requete->bindValue(':pro_place', $propose->getPlace());
 		$requete->bindValue(':pro_sens', $propose->getSens());

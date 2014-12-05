@@ -79,12 +79,12 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 				$PersonneModifie->setPerPwd ( $nouvMdp );
 				
 				$personneManager->modifierPersonne( $PersonneModifie );
-				echo "Personne mise à jour";
+				echo " <img src=\"image/valid.png\" alt='erreur' /> Personne mise à jour";
 			} else {
-				echo "Les mots de passes ne correspondent pas";
+				echo "<img src=\"image/erreur.png\" alt='erreur' /> Les mots de passe saisis ne correspondent pas";
 			}
 		} else {
-			echo "Mot de passe incorrect.";
+			echo "<img src=\"image/erreur.png\" alt='erreur' /> Mot de passe incorrect.";
 		}
 	}
 }

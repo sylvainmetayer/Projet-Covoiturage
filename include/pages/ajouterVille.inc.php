@@ -23,8 +23,6 @@ if (empty ( $_POST ['choix_ville'] )) {
 {
 		?>  
 		
-		
-		
 		<p>
 			<img src="image/valid.png" alt='valid' /> La ville <b><?php echo $_POST['choix_ville'] ?></b>
 			a été ajoutée

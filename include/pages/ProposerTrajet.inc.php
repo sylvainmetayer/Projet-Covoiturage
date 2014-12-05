@@ -47,8 +47,8 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		}
 		?>
 		</select> <br /> Date de départ : <input type="text"
-		pattern='[0-3][0-9]/[0-1][0-9]/[0-9]{4}' name="pro_date" id="pro_date"
-		value="<?php echo date("d/m/Y"); ?>" /> Heure de départ : <input
+		pattern='[0-3][0-9]-[0-1][0-9]-[0-9]{4}' name="pro_date" id="pro_date"
+		value="<?php echo date("d-m-Y"); ?>" /> Heure de départ : <input
 		type="text" pattern='[0-2][0-9]:[0-5][0-9]:[0-5][0-9]' name="pro_time"
 		id="pro_time" value="<?php echo date("H:i:s"); ?>" /> <br /> Nombre de
 	places : <input type="text" name="pro_place" id="pro_place" value="1" />
@@ -86,10 +86,13 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		if ($resultat != 1) {
 			// On doit controler que seulement 1 propose a été ajouté, sinon, c'est que la requete à plantée.
 			?>
+<img src="image/erreur.png" alt='erreur' />
 <p>Votre proposition de trajet n'à pas été ajoutée.</p>
+
 <?php
 		} else {
 			?>
+<img src="image/valid.png" alt='erreur' />
 <p>Votre proposition de trajet à été ajoutée.</p>
 <?php
 		}

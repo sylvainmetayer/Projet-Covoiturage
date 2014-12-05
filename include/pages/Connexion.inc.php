@@ -41,7 +41,8 @@ if (empty ( $_POST ['reponse'] )) {
 	$connexionOK = $personneManager->testConnexion ( $login, $pass );
 	
 	if ($reponse != $resultat) { // si le captcha est incorrect
-		echo "Le captcha est incorrect<br/>\n";
+		echo "<img src=\"image/erreur.png\" alt='erreur' /> Le captcha est incorrect<br/>\n";
+		$captcha = false;
 		?>
 <br />
 <strong><a href="index.php?page=11">Reessayer ? </a>
@@ -49,10 +50,13 @@ if (empty ( $_POST ['reponse'] )) {
 <?php
 		session_destroy ();
 		// pour eviter des erreurs.
+	} else {
+		$captcha = true;
+		//le captcha est correct
 	}
 	
 	if ($connexionOK == false) { // mauvais mot de passe/identifiant
-		echo "Erreur d'identifiant / mot de passe <br/>\n";
+		echo "<img src=\"image/erreur.png\" alt='erreur' /> Erreur d'identifiant / mot de passe <br/>\n";
 		?> <strong><a href="index.php?page=11">Reessayer ? </a> <?php
 		session_destroy ();
 		// pour eviter des erreurs.
@@ -60,14 +64,13 @@ if (empty ( $_POST ['reponse'] )) {
 <?php
 	}
 	
-	if (($connexionOK == $resultat) && ($connexionOK == true)) { // le captcha est bon et les id/mdp aussi
+	if (($connexionOK == $resultat) && ($connexionOK == true) && $captcha==true) { // le captcha est bon et les id/mdp aussi
 		$_SESSION ['per_login_connecte'] = $_POST ['per_login'];
 		$personneConnectee = $personneManager->getPersonneParLogin ( $_SESSION ['per_login_connecte'] );
 		$_SESSION ["per_num_connecte"] = ($personneConnectee->getPerNum ());
 		$_SESSION ["per_prenom_connecte"] = ($personneConnectee->getPrenomPersonne ());
 		//var_dump ( $personneConnectee );
-		echo "<p>Bienvenue " . $personneConnectee->getPrenomPersonne () . " !</p>";
-		
+		echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
 		/*
 		 * Au final, on dispose de 3 variable de sessions : 1 pour les conditions si on est connecte :
 		 * per_login_connecte

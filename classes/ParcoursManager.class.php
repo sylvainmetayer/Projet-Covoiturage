@@ -94,7 +94,7 @@ class ParcoursManager{
 		$requete->execute();
 	
 		while($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-			//fetch assoc, car fetch obj merde. 
+			//fetch assoc, car fetch obj non fonctionnel
 			$listeVilles[] = $villeManager->getVilleParId($ligne["vil_num"]);
 		}
 	
