@@ -7,7 +7,7 @@ if(empty($_GET['id']))
 {
 ?>
 <div><h1>Liste des personnes</h1></div>
-<?php echo "Actuellement ".count($personnes)." personnes sont enregistrées\n"; ?>
+<?php echo "Actuellement ".count($personnes)." personnes sont enregistr&eacute;es\n"; ?>
 <br/>
 <br/>
 <center>
@@ -46,10 +46,10 @@ else{
 			<center>
 			<table border='1'>
 				<tr>
-					<th>Pr꯯m</th>
+					<th>Pr&eacute;nom</th>
 					<th>Mail</th>
 					<th>Tel</th>
-					<th>D걡rtement</th>
+					<th>D&eacute;partement</th>
 					<th>Ville</th>
 				</tr>
 				<tr>
@@ -71,7 +71,7 @@ else{
 			<center>
 			<table border='1'>
 				<tr>
-					<th>Pr꯯m</th>
+					<th>Pr&eacute;nom</th>
 					<th>Mail</th>
 					<th>Tel</th>
 					<th>Tel pro</th>
@@ -88,7 +88,7 @@ else{
 			</center>
 		<?php 
 		}else {?>
-			<p><img src="image/erreur.png" class="imagErreur" alt="Erreur"/> Cette personne ne fait partie ni des étudiants, ni des salariés</p>
+			<p><img src="image/erreur.png" class="imagErreur" alt="Erreur"/> Cette personne ne fait partie ni des &eacute;tudiants, ni des salari&eacute;s</p>
 		<?php
 		}
 	}

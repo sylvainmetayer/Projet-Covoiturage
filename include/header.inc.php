@@ -27,7 +27,7 @@ $title = "Bienvenue sur le site de covoiturage de l'IUT.";
 				</a>
 			</div>
 			<div class="colonne">
-				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
+				Covoiturage de l'IUT,<br />Partagez plus que votre v&eacute;hicule !!!
 			</div>
 		</div>
 		<div id="connect">

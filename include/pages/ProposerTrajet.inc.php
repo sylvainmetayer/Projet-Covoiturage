@@ -16,7 +16,7 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		$villes = $villeManager->getAllVille ();
 		?>
 <form action="#" method="POST">
-	Ville de départ :<br /> <select name="vil_num1">
+	Ville de d&eacute;part :<br /> <select name="vil_num1">
 			<?php
 		foreach ( $villes as $ville ) {
 			?>
@@ -34,11 +34,11 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		$listeVille = $parcoursManager->getVilleArriveePossible ( $_POST ["vil_num1"] );
 		?>
 <form action="#" method="POST">
-		Ville de départ : <?php echo $villeDepart->getVilleNom(); ?>
+		Ville de d&eacute;part : <?php echo $villeDepart->getVilleNom(); ?>
 		<input type="hidden" name="vil_num1"
 		value="<?php echo $_POST["vil_num1"]; ?>" />
 	<!-- Obligé pour pouvoir conserver vil_num1, et evite la variable de session pour un truc -->
-	Ville d'arrivée : <select name="vil_num2">
+	Ville d'arriv&eacute;e : <select name="vil_num2">
 			<?php
 		foreach ( $listeVille as $ville ) {
 			?>
@@ -46,9 +46,9 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 				<?php
 		}
 		?>
-		</select> <br /> Date de départ : <input type="text"
+		</select> <br /> Date de d&eacute;part : <input type="text"
 		pattern='[0-3][0-9]-[0-1][0-9]-[0-9]{4}' name="pro_date" id="pro_date"
-		value="<?php echo date("d-m-Y"); ?>" /> Heure de départ : <input
+		value="<?php echo date("d-m-Y"); ?>" /> Heure de d&eacute;part : <input
 		type="text" pattern='[0-2][0-9]:[0-5][0-9]:[0-5][0-9]' name="pro_time"
 		id="pro_time" value="<?php echo date("H:i:s"); ?>" /> <br /> Nombre de
 	places : <input type="text" name="pro_place" id="pro_place" value="1" />
@@ -87,13 +87,13 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 			// On doit controler que seulement 1 propose a été ajouté, sinon, c'est que la requete à plantée.
 			?>
 <img src="image/erreur.png" alt='erreur' />
-<p>Votre proposition de trajet n'à pas été ajoutée.</p>
+<p>Votre proposition de trajet n'a pas &eacute;t&eacute; ajout&eacute;e.</p>
 
 <?php
 		} else {
 			?>
 <img src="image/valid.png" alt='erreur' />
-<p>Votre proposition de trajet à été ajoutée.</p>
+<p>Votre proposition de trajet &agrave; &eacute;t&eacute; ajout&eacute;e.</p>
 <?php
 		}
 	}
@@ -101,7 +101,7 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 <?php
 } else {
 	?>
-<p>Vous devez être connecté pour afficher cette page.</p>
+<p>Vous devez être connect&eacute; pour afficher cette page.</p>
 <?php
 }
 ?>

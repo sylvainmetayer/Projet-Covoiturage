@@ -8,7 +8,7 @@
 	
 	<p>Actuellement, il y a 
 	<?php echo count($villes); ?> 
-	villes enregistrées
+	villes enregistr&eacute;es
 	</p>
 </div>
 <center>

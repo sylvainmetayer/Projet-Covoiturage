@@ -27,7 +27,7 @@
 			<li><a href="index.php?page=7">Ajouter</a></li>
 			<li><a href="index.php?page=8">Lister</a></li>
 		</ul>
-		<?php if (!empty($_SESSION['per_login_connecte'])) { //la personne est connect�e ?>
+		<?php if (!empty($_SESSION['per_login_connecte'])) { //la personne est connectee ?>
 		<p>
 			<img src="image/trajet.png" class="imagMenu" alt="Trajet" />Trajet
 		</p>

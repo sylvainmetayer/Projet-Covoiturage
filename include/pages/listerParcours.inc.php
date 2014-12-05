@@ -10,7 +10,7 @@
 	
 	<p>Actuellement, il y a 
 	<?php echo count($parcours);?> 
-	parcours enregistr�s
+	parcours enregistr&eacute;s
 	</p>
 </div>
 <center>

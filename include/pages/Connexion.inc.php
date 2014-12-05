@@ -15,7 +15,7 @@ if (empty ( $_POST ['reponse'] )) {
 	de passe : <input type="password" name="per_pwd" id="per_pwd"> <br />
 
 	<p class="captcha">
-		Merci de résoudre le calcul suivant pour confirmer que vous n'êtes pas
+		Merci de résoudre le calcul suivant pour confirmer que vous n'&ecirc;tes pas
 		un robot <br /> <img src="image/nb/<?php echo $nb1 ?>.jpg" /> + <img
 			src="image/nb/<?php echo $nb2 ?>.jpg" /> =
 	</p>

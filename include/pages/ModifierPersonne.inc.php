@@ -15,7 +15,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	?>
 <form action="#" method="POST">
-	Personne � modifier : <select name="per_num" id="per_num">
+	Personne &acirc; modifier : <select name="per_num" id="per_num">
 				<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -37,7 +37,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 		value="<?php echo $personne->getNomPersonne();?>" required /> <br />
 	Prenom : <input name='per_prenom' id='per_prenom' type='text'
 		value='<?php echo $personne->getPrenomPersonne(); ?>' required /> <br />
-	T�l�phone : <input name='per_tel' id='per_tel' type='text'
+	T&eacute;l&eacute;phone : <input name='per_tel' id='per_tel' type='text'
 		value='<?php echo $personne->getPerTel(); ?>' required /> <br /> Mail
 	: <input name='per_mail' id='per_mail' type='text'
 		value='<?php echo $personne->getPerMail(); ?>' required /> <br />
@@ -47,7 +47,7 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 		value='' /> <br />
 	<!-- On saisie deux fois afin d'être sur que la personne saississe le bon mdp-->
 	Nouveau mot de passe : <input name='per_nouveau' id='per_nouveau'
-		type='password' value='' /> <br /> Retaper mot de passe : <input
+		type='password' value='' /> <br /> Retaper le mot de passe : <input
 		name='per_confirmation' id='per_confirmation' type='password' value='' />
 	<br /> <input type='submit' value='Modifier' />
 </form>

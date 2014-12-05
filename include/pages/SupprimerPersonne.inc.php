@@ -1,4 +1,4 @@
-<h1>Supprimer des personnes enregistr�es</h1>
+<h1>Supprimer des personnes enregistr&eacute;es</h1>
 <?php
 $pdo = new Mypdo ();
 $personneManager = new PersonneManager ( $pdo );
@@ -6,7 +6,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] )) {
 	?>
 <form action="#" method="POST">
-	Personne � supprimer : <select name="per_num" id="per_num">
+	Personne &agrave; supprimer : <select name="per_num" id="per_num">
 	<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -32,7 +32,7 @@ if (empty ( $_POST ['per_num'] )) {
 	// TOOD img a afficher
 	?>
 <img src='../../image/valid.png' alt='OK' />
-<p>Personne supprim�e</p>
+<p>Personne supprim&eacute;e</p>
 <?php
 }
 ?>
