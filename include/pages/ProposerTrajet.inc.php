@@ -64,7 +64,7 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 			$parcours = $parcoursManager->VerifParcours ( $_POST ["vil_num2"], $_POST ["vil_num1"] );
 		}
 		$propose = new Propose ( $_POST );
-		$propose->setPerNum ( $_SESSION ["per_login_connecte"] );
+		$propose->setPerNum ( $_SESSION ["per_num_connecte"] );
 		$propose->setParNum ( $parcours->getParNum () );
 		
 		if ($parcours->getVil_num1 () == $_POST ["vil_num1"]) {
