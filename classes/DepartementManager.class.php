@@ -37,7 +37,6 @@ class DepartementManager{
 	}
 	
 	// Pour obtenir un departement en particulier
-	// A TESTER
 	public function getDetailsDepartement($idDepartement) 
 	{
 		$sql = 'SELECT dep_num, dep_nom, vil_num FROM DEPARTEMENT WHERE dep_num='.$idDepartement.'';
@@ -48,7 +47,7 @@ class DepartementManager{
 		if ($resultat != null)
 		{
 			return new Departement($resultat);
-			// on retourne un objet !!
+			// on retourne un objet Departement
 		}
 		else
 		{

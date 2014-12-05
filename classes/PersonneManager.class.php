@@ -5,8 +5,8 @@ class PersonneManager {
 		$this->db = $db;
 	}
 	
-	// Cette fonction va ajouter une personne, puis retourner l'id de la personne ajouté, ce qui permettra de faire l'ajout de l'étudiant/salarié
-	// A TESTER
+	// Cette fonction va ajouter une personne, puis retourner l'id de la personne ajouté,
+	// ce qui permettra de faire l'ajout de l'étudiant/salarié
 	public function add($personne) {
 		$requete = $this->db->prepare ( 'INSERT INTO personne (per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd) VALUES (:nom, :prenom, :tel, :mail, :login, :pwd);' );
 		
@@ -21,8 +21,6 @@ class PersonneManager {
 		return $this->db->lastInsertId ();
 		// Pour ajouter par la suite un etudiant/salarié
 	}
-	
-	// A TESTER
 	public function getAllPersonnes() {
 		$listePersonne = array ();
 		
@@ -35,8 +33,6 @@ class PersonneManager {
 		return $listePersonne;
 		$requete->closeCursor ();
 	}
-	
-	// A TESTER
 	public function modifierPersonne($personne) {
 		$requete = $this->db->prepare ( "UPDATE personne SET per_prenom=:prenom, per_nom=:nom, 
 		per_tel=:tel, per_mail=:mail, 
@@ -53,10 +49,8 @@ class PersonneManager {
 		$requete->bindValue ( ':per_num', $personne->getPerNum () ); // permet de modifier la bonne personne
 		
 		$requete->execute ();
-		return $personne->getPerNum (); // pour r�cup�rer l'id de l'étudiant/salarié à modifier
+		return $personne->getPerNum (); // pour récupérer l'id de l'étudiant/salarié à modifier
 	}
-	
-	// A TESTER
 	public function supprimerPersonne($personne) {
 		// $personne ne contient que le per_num de la personne, on a pas besoin de passer par des getter
 		if ($this->isEtudiant ( $personne )) {
@@ -128,15 +122,13 @@ class PersonneManager {
 		}
 	}
 	
-	// Pour la connexion
+	// Pour tester le mot de passe et le login lors de la connexion
 	public function testConnexion($login, $mdp) {
-		// $sale = sha1( sha1($mdp) . SEL ); le grain de sel, a voir plus tard.
 		$sql = "SELECT per_login FROM personne WHERE per_login=:login AND per_pwd=:mdp";
 		
 		$requete = $this->db->prepare ( $sql );
 		$requete->bindValue ( ':login', $login );
 		$requete->bindValue ( ':mdp', (sha1 ( sha1 ( $mdp ) . SEL )) );
-		//$requete->bindValue ( ':mdp', $mdp );
 		
 		$requete->execute ();
 		$resultat = $requete->fetch ( PDO::FETCH_OBJ );

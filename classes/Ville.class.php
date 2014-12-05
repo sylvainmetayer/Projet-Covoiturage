@@ -11,7 +11,6 @@ class Ville{
 		}
 	}
 	
-	// POUR CLEMENT : METTRE LES NOMS DE VARIABLES PAREIL QUE SUR LES NOMS SUR LA BD !!!
 	public function affecte($donnees)
 	{
 		foreach ($donnees as $attribut => $valeurs)

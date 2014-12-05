@@ -7,8 +7,7 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 	<form name='crea_parcours' id='crea_parcours' action='#' method='post'>
 
 		<p>
-			Ville de d�part : <select name=ville1 class='champ'>
-				<option>Choisissez votre ville de départ</option>
+			Ville de d&eacute;part : <select name=ville1 class='champ'>
 		<?php
 	// Listage de toutes les villes
 	$pdo = new MyPdo ();
@@ -24,8 +23,7 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 		</p>
 
 		<p>
-			Ville d'arriv�e : <select name=ville2 class='champ'>
-				<option>Choisissez votre ville de d'arrivée</option>
+			Ville d'arriv&eacute;e : <select name=ville2 class='champ'>
 		<?php
 	// Listage de toutes les villes
 	$pdo = new MyPdo ();
@@ -43,7 +41,7 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 
 		<p>
 			Nombre de Km :<input type='number' step="1" name="nbKm"
-				placeholder='10' class='champ'>
+				placeholder='Ex : 10' class='champ'>
 		</p>
 
 		<p>
@@ -71,15 +69,15 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 {
 		?>  
 		<p>
-			<img src="image/valid.png" alt='valid' /> Le parcours a bien été
-			ajouté
+			<img src="image/valid.png" alt='valid' /> Le parcours a bien
+			&eacute;t&eacute; ajout&eacute;
 		</p>
 	<?php
 	} else {
 		?>  
 		<p>
-			<img src="image/erreur.png" alt='erreur' /> Le parcours n'a pas été
-			ajouté, car il existe déjà.
+			<img src="image/erreur.png" alt='erreur' /> Le parcours n'a pas
+			&eacute;t&eacute; ajout&eacute;, car il existe d&eacute;j&agrave;.
 		</p>
 	<?php
 	}

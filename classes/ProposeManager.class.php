@@ -27,7 +27,6 @@ class ProposeManager{
 		return $retour;
 	}
 	
-	// A TESTER - Vraiment utile ?
 	public function getAllPropose() {
 		$listePropose = array();
 		

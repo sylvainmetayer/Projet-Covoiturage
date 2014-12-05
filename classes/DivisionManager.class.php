@@ -6,20 +6,17 @@ class DivisionManager{
 		$this->db = $db;
 	}
 
-	// A TESTER
 	public function add($division)
 	{
 		$requete = $this->db->prepare(
 		'INSERT INTO DIVISION (div_nom) VALUES (:div_nom);');
 		
 		$requete->bindValue(':div_num',$division>getDivNom());
-		//$requete->bindValue(':div_nom',$division->getDivNum();
 		
 		$retour = $requete->execute();
 		return $retour;
 	}
 	
-	// A TESTER
 	public function getAllDivisions()
 	{
 		$listeDivision = array(); //tableau d'objet
@@ -36,7 +33,6 @@ class DivisionManager{
 	}
 	
 	// Pour obtenir une division en particulier
-	// A TESTER
 	public function getDetailsDivision($idDivision) 
 	{
 		$sql = 'SELECT div_num, div_nom FROM DIVISION WHERE div_num='.$idDivision.'';
@@ -51,7 +47,7 @@ class DivisionManager{
 		}
 		else
 		{
-			//Division demandée non trouvée
+			//Division demandÃ©e non trouvÃ©e
 			return null;
 		}
 	}

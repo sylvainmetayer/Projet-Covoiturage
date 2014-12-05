@@ -24,20 +24,20 @@ if (
 	<form name='ajouter_personne' id='ajouter_personne' action='#'
 		method='post'>
 		Nom : <input type='text' placeholder='Ex : Michu' name='nom'
-			class='champ' required> Prénom : <input type='text'
+			class='champ' required> Pr&eacute;nom : <input type='text'
 			placeholder='Ex : Sarah' name='prenom' class='champ' required> <br />
-		T�l�phone : <input type='text' placeholder='0xxxxxxxxx' name='tel'
-			class='champ' pattern='[0][0-9]{9}' required> Mail : <input
+		T&eacute;l&eacute;phone : <input type='text' placeholder='0xxxxxxxxx'
+			name='tel' class='champ' pattern='[0][0-9]{9}' required> Mail : <input
 			type='mail' placeholder='sarah.michu@example.fr' name='mail'
-			class='champ' required> <br /> Login : <input type='text'
+			class='champ' required /> <br /> Login : <input type='text'
 			placeholder='Ex : Sarah87' name='login' class='champ' required> Mot
 		de passe : <input type='password' placeholder='********' name='mdp'
-			class='champ' required> <br /> Cat�gorie :
+			class='champ' required /> <br /> Cat&eacute;gorie :
 		<!-- Par défaut, on met l'etudiant coché afin d'être sur qu'une case soit cochée.-->
 		<input type='radio' name='typePersonne' class='champ' value='etudiant'
-			checked='checked'> Etudiant </input> <input type='radio'
-			name='typePersonne' value='personnel' class='champ'> Personnel </input>
-		<br /> <input type='submit' value='Valider'>
+			checked='checked' /> Etudiant <input type='radio' name='typePersonne'
+			value='personnel' class='champ' /> Personnel <br /> <input
+			type='submit' value='Valider'>
 	</form>
 </div>
 <?php
@@ -73,9 +73,9 @@ if (
 <div id='salarie'>
 	<form name='ajouter_salarie' id='ajouter_salarie' action='#'
 		method='post'>
-		Numero de telephone professionnel : <input type='text'
+		Numero de t&eacute;l&eacute;phone professionnel : <input type='text'
 			placeholder='0xxxxxxxxx' name='tel_pro' class='champ'
-			pattern='[0][0-9]{9}' required> Fonction : <select
+			pattern='[0][0-9]{9}' required /> Fonction : <select
 			name=choix_fonction class='champ'> 
 					<?php
 		// Listage de toutes les fonctions
@@ -88,7 +88,7 @@ if (
 						<?php
 		}
 		?>
-				</select> <input type='submit' value='Valider'>
+				</select> <input type='submit' value='Valider' />
 	</form>
 </div>
 <?php
@@ -125,23 +125,17 @@ if (
 						<?php
 		}
 		?>
-				</select>
-
-		<!--<input type="hidden" name="per_num" value="<?php //$PersonneManager->getDernierePersonneAjoutee()->getPerNum() ?>">-->
-		<!-- Peut être pas utile-->
-
-		<input type='submit' value='Valider'>
+				</select> <input type='submit' value='Valider'>
 	</form>
 </div>
 <?php
 	}
 }
 if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( $_POST ['choix_departement'] ))) {
-	// NORMALEMENT !!!!!!!!!!!!!!!! A TESTER
-	// TODO
-	// Dans ce cas, le formulaire d'une personne est complet, dans les $_SESSION, et soit le salarie, soit l'etudiant est dans le $_POST
+	// Dans ce cas, le formulaire d'une personne est complet, dans le $_SESSION,
+	// et soit le salarie, soit l'etudiant est dans le $_POST
 	
-	// On va ajouter une personne
+	// On va ajouter une personne, et récupérer son id
 	// var_dump($_SESSION['Personne']);
 	$idPersonne = $PersonneManager->add ( $_SESSION ['Personne'] );
 	// var_dump($idPersonne);
@@ -149,7 +143,6 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	if ($_SESSION ['typePersonne'] == 'etudiant') {
 		// On va ajouter l'étudiant
 		
-		// TODO
 		$etudiant = new Etudiant ( array (
 				'dep_num' => $_POST ['choix_departement'],
 				'div_num' => $_POST ['choix_departement'] 
@@ -158,7 +151,6 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	} else if ($_SESSION ['typePersonne'] == 'personnel') {
 		// On va ajouter un salarie
 		
-		// TODO
 		$salarie = new Salarie ( array (
 				'sal_telprof' => $_POST ['tel_pro'],
 				'fon_num' => $_POST ['choix_fonction'] 
@@ -172,7 +164,7 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 		?>
 <p>
 	<img src="image/valid.png" alt='valid' /> <b><?php echo $_SESSION['Personne']->getPrenomPersonne(); ?></b>
-	a été ajouté.
+	a &eacute;t&eacute; ajout&eacute;.
 </p>
 <?php
 		unset ( $_SESSION ['Personne'] );
@@ -182,7 +174,7 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 		?>
 <p>
 	<img src="image/erreur.png" alt='erreur' /> <b><?php echo $_SESSION['Personne']->getPrenomPersonne(); ?></b>
-	n'a pas �t� ajout�.
+	n'a pas &eacute;t&eacute; ajout&eacute;.
 </p>
 <?php
 		unset ( $_SESSION ['Personne'] );

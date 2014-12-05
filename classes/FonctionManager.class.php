@@ -5,7 +5,6 @@ class FonctionManager{
 		$this->db = $db;
 	}
 
-	// A TESTER
 	public function add($fonction)
 	{
 		$requete = $this->db->prepare(
@@ -17,7 +16,6 @@ class FonctionManager{
 		return $retour;
 	}
 	
-	// A TESTER
 	public function getAllFonctions()
 	{
 		$listeFonction = array(); //tableau d'objet
@@ -34,7 +32,6 @@ class FonctionManager{
 	}
 	
 	// Pour obtenir une fonction en particulier
-	// A TESTER
 	public function getDetailsFonction($idFonction) 
 	{
 		$sql = 'SELECT fon_num, fon_libelle FROM FONCTION WHERE fon_num='.$idFonction.'';

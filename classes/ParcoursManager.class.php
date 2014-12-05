@@ -8,10 +8,9 @@ class ParcoursManager{
 		$this->db = $db;
 	}
 	
-	// A TESTER
 	public function VerifParcours($vil_num1, $vil_num2)
 	{
-		//On selectionne tous les parcours ayant pour d�part vil_num1 et arriv�e vil_num2
+		//On selectionne tous les parcours ayant pour départ vil_num1 et arrivée vil_num2
 		$sql = "SELECT par_num, par_km, vil_num1, vil_num2 FROM parcours WHERE vil_num1=:vil_num1 AND vil_num2=:vil_num2";
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(":vil_num1", $vil_num1);
@@ -33,20 +32,14 @@ class ParcoursManager{
 		}
 	}
 	
-	// A TESTER
 	public function add($parcours)
 	{
-		// Il manque une fonction qui recherche le numero de la ville passée en parametre
-		// pour verifier qu'elle n'existe pas déjà.
-		// Il faudra la faire deux fois, dans le sens vil_num1->vil_num2 et dans le sens vil_num2->vil_num1
-		//Fonction faite, voir plus bas
-	
 		//on regarde le premier sens
 		$sens1 = $this->VerifParcours( $parcours->getVil_num1() , $parcours->getVil_num2() );
 		//on regarde l'autre sens
 		$sens2 = $this->VerifParcours( $parcours->getVil_num2() , $parcours->getVil_num1() );
 		//var_dump($sens1); var_dump($sens2);
-		//si $sens1 et $sens2 sont different de null, ça veut dire que le parcours existe déjà, et qu'il ne faut pas l'ajouter à nouveau
+		//si $sens1 OU $sens2 sont different de null, ça veut dire que le parcours existe déjà, et qu'il ne faut pas l'ajouter à nouveau
 		if ( $sens1 != null or $sens2 != null)
 		{
 			return null;
@@ -65,7 +58,6 @@ class ParcoursManager{
 		return $retour;
 	}
 	
-	// A FAIRE
 	public function getAllParcours()
 	{
 		$listeParcours = array(); //tableau d'objet
@@ -73,7 +65,6 @@ class ParcoursManager{
 		$sql = 'SELECT par_num, vil_num1, vil_num2, par_km FROM parcours';
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
-		//truc multiple à gérer
 		while ($nom_vil = $requete->fetch(PDO::FETCH_OBJ))
 		{
 			$listeParcours[] = new parcours($nom_vil);
@@ -87,14 +78,14 @@ class ParcoursManager{
 		$listeVilles = array(); //tableau d'objet
 		$villeManager = new VilleManager($this->db);
 		$sql = "SELECT vil_num1 AS vil_num FROM parcours WHERE vil_num2=:vil_num1 UNION SELECT vil_num2 FROM parcours WHERE vil_num1=:vil_num1";
-		//on met dans une même colonne les resultat des parcours dans les deux sens afin de savoir les ville proposables
+		//on met dans une même colonne les resultat des parcours dans les deux sens afin de savoir les ville "proposables"
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(":vil_num1", $vil_num1);
 	
 		$requete->execute();
 	
 		while($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-			//fetch assoc, car fetch obj non fonctionnel
+			//fetch assoc, car fetch obj marche pas, et fait une erreur.
 			$listeVilles[] = $villeManager->getVilleParId($ligne["vil_num"]);
 		}
 	

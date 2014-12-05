@@ -6,7 +6,6 @@ class SalarieManager {
 	
 	// $salarie, c'est un objet de type etudiant qu'on va lui passer
 	// $id, c'est l'id de la personne ajoutée, qui va servir à faire le lien.
-	// A TESTER, PAS GARANTI QUE CA MARCHE
 	public function add($salarie, $idPersonne) {
 		$requete = $this->db->prepare ( 'INSERT INTO SALARIE (per_num, sal_telprof, fon_num ) VALUES (:per_num, :sal_telprof, :fon_num);' );
 		$requete->bindValue ( ':per_num', $idPersonne );
@@ -16,8 +15,6 @@ class SalarieManager {
 		$retour = $requete->execute ();
 		return $retour;
 	}
-	
-	// A TESTER
 	public function getAllSalarie() {
 		$listeSalaries = array (); // tableau d'objet
 		
@@ -30,16 +27,6 @@ class SalarieManager {
 		}
 		$requete->closeCursor ();
 		return $listeSalaries;
-	}
-	public function getNbSalaries() {
-		$sql = 'select * from salarie';
-		$requete = $this->db->prepare ( $sql );
-		$requete->execute ();
-		while ( $salaries = $requete->fetch ( PDO::FETCH_OBJ ) ) {
-			$sql = $sql + 1;
-		}
-		$requete->closeCursor ();
-		return $sql;
 	}
 	public function getSalarie($per_num) {
 		$sql = 'select * from salarie s,personne p,fonction f
