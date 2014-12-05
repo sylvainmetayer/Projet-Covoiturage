@@ -65,8 +65,8 @@ if (empty ( $_POST ['reponse'] )) {
 		?>
 <?php
 	}
-	
-	if (($connexionOK == $resultat) && ($connexionOK == true) && $captcha == true) { // le captcha est bon et les id/mdp aussi
+	 
+	if (($connexionOK == true) && $captcha == true) { // le captcha est bon et les id/mdp aussi
 		$_SESSION ['per_login_connecte'] = $_POST ['per_login'];
 		$personneConnectee = $personneManager->getPersonneParLogin ( $_SESSION ['per_login_connecte'] );
 		$_SESSION ["per_num_connecte"] = ($personneConnectee->getPerNum ());

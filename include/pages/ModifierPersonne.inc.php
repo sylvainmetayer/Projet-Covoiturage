@@ -15,7 +15,7 @@ $personneManager = new PersonneManager ( $pdo );
 if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	?>
 <form action="#" method="POST">
-	Personne &acirc; modifier : <select class='champ' name="per_num" id="per_num">
+	Personne &agrave; modifier : <select class='champ' name="per_num" id="per_num">
 				<?php
 	$listePersonnes = $personneManager->getAllPersonnes ();
 	foreach ( $listePersonnes as $personne ) {
@@ -33,27 +33,26 @@ if (empty ( $_POST ['per_num'] ) && empty ( $_POST ['per_tel'] )) {
 	$_SESSION ['per_num'] = $_POST ['per_num'];
 	?>
 <form action="#" method="POST">
-	Nom : <input name='per_nom' class='champ' id='per_nom' type='text'
+	<label for ='per_nom'>Nom :</label> <input name='per_nom' class='champ' id='per_nom' type='text'
 		value="<?php echo $personne->getNomPersonne();?>" required />
-	Prenom : <input name='per_prenom' class='champ' id='per_prenom' type='text'
+	<label for='per_prenom'>Prenom : </label><input name='per_prenom' class='champ' id='per_prenom' type='text'
 		value='<?php echo $personne->getPrenomPersonne(); ?>' required /> <br />
-	T&eacute;l&eacute;phone : <input class='champ' name='per_tel' id='per_tel' type='text'
-		value='<?php echo $personne->getPerTel(); ?>' required />  Mail
-	: <input name='per_mail' class='champ' id='per_mail' type='text'
+	<label for='per_tel'>T&eacute;l&eacute;phone : </label><input class='champ' name='per_tel' id='per_tel' type='text'
+		value='<?php echo $personne->getPerTel(); ?>' required /> <label for='per_mail'> Mail :</label>
+	 <input name='per_mail' class='champ' id='per_mail' type='text'
 		value='<?php echo $personne->getPerMail(); ?>' required /> <br />
-	Login : <input name='per_login' class='champ' id='per_login' type='text'
-		value='<?php echo $personne->getPerLogin(); ?>' required />  Mot
-	de passe actuel : <input name='per_mdp' class='champ' id='per_mdp' type='password'
+	<label for='per_login'>Login :</label> <input name='per_login' class='champ' id='per_login' type='text'
+		value='<?php echo $personne->getPerLogin(); ?>' required />  <label for='per_mdp'>Mot
+	de passe actuel :</label> <input name='per_mdp' class='champ' id='per_mdp' type='password'
 		value='' /> <br />
 	<!-- On saisie deux fois afin d'être sur que la personne saississe le bon mdp-->
-	Nouveau mot de passe : <input name='per_nouveau' class='champ' id='per_nouveau'
-		type='password' value='' />  Retaper le mot de passe : <input
+	<label for='per_nouveau'>Nouveau mot de passe : </label><input name='per_nouveau' class='champ' id='per_nouveau'
+		type='password' value='' />  <label for='per_confirmation'>Retaper le mot de passe :</label> <input
 		name='per_confirmation' class='champ' id='per_confirmation' type='password' value='' />
 	<br /> <input type='submit' value='Modifier' />
 </form>
 <?php
 } else {
-	// TODO Gestion des mots de passe
 	$personne = $personneManager->getPersonneParId ( $_SESSION ['per_num'] );
 	$PersonneModifie = new Personne ( $_POST );
 	// permet de recuperer tout les champs

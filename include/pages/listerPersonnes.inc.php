@@ -11,12 +11,11 @@ if(empty($_GET['id']))
 <br/>
 <br/>
 <center>
-<table border='1'>
-<tr><th>Num&eacute;ro</th><th>Nom</th><th>Prenom</th></tr>
+<table border='solid'>
+<tr><th>Num&eacute;ro</th><th>Nom</th><th>Pr&eacute;nom</th></tr>
 	<?php
 	foreach($personnes as $personne)
 	{
-	//lien vers salarié ou etudiant avec le numéro a faire
 	?>
 		<tr><td><?php echo "<a href='index.php?page=2&id=".$personne->getPerNum()."'>".$personne->getPerNum()."</a>"; ?> 
 		</td><td><?php echo "<a href='index.php?page=2&id=".$personne->getPerNum()."'>".$personne->getNomPersonne()."</a>"; ?>
@@ -44,7 +43,7 @@ else{
 		?>
 			<h1> D&eacute;tail sur l'&eacute;tudiant <?php echo $personne->getNomPersonne();?></h1>
 			<center>
-			<table border='1'>
+			<table border='solid'>
 				<tr>
 					<th>Pr&eacute;nom</th>
 					<th>Mail</th>
@@ -69,7 +68,7 @@ else{
 			?>
 			<h1> D&eacute;tail sur le salari&eacute; <?php echo $personne->getNomPersonne();?></h1>
 			<center>
-			<table border='1'>
+			<table border='solid'>
 				<tr>
 					<th>Pr&eacute;nom</th>
 					<th>Mail</th>
@@ -88,7 +87,10 @@ else{
 			</center>
 		<?php 
 		}else {?>
-			<p><img src="image/erreur.png" class="imagErreur" alt="Erreur"/> Cette personne ne fait partie ni des &eacute;tudiants, ni des salari&eacute;s</p>
+			<p>
+			<img src="image/erreur.png" class="imagErreur" alt="Erreur"/> 
+			Cette personne ne fait partie ni des &eacute;tudiants, ni des salari&eacute;s
+			</p>
 		<?php
 		}
 	}

@@ -14,7 +14,7 @@
 <center>
 <table border='solid' >
 	<tr>
-		<th>Numero</th> <th>Nom</th> 
+		<th>Num&eacute;ro</th> <th>Nom</th> 
 	</tr>
 	
 <?php
