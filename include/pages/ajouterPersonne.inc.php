@@ -141,7 +141,6 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	// Dans ce cas, le formulaire d'une personne est complet, dans le $_SESSION,
 	// et soit le salarie, soit l'etudiant est dans le $_POST
 	
-	// On va ajouter une personne, et récupérer son id
 	// var_dump($_SESSION['Personne']);
 	
 	$idPersonne = $PersonneManager->add ( $_SESSION ['Personne'] );
@@ -168,7 +167,8 @@ if ((empty ( $_POST ['nom'] )) and (! empty ( $_POST ['tel_pro'] ) or ! empty ( 
 	} else {
 		// le login existe déjà
 		$retour = null;
-		echo "<p> Ce login est d&eacute;j&agrave; utilis&eacute;, merci d'en choisir un autre. </p> <br/>";
+		echo "<p> <img src=\"image/erreur.png
+		\" alt='erreur' /> Ce login est d&eacute;j&agrave; utilis&eacute;, merci d'en choisir un autre. </p> <br/>";
 	}
 	if ($retour != null) {
 		// OK

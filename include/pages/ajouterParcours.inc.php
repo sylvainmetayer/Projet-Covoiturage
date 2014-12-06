@@ -7,7 +7,8 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 	<form name='crea_parcours' id='crea_parcours' action='#' method='post'>
 
 		<p>
-			<label for='ville1'>Ville de d&eacute;part :</label> <select name=ville1 class='champ'>
+			<label for='ville1'>Ville de d&eacute;part :</label> <select
+				name=ville1 class='champ'>
 		<?php
 	// Listage de toutes les villes
 	$pdo = new MyPdo ();
@@ -23,7 +24,8 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 		</p>
 
 		<p>
-			<label for='ville2'> Ville d'arriv&eacute;e : </label> <select name=ville2 class='champ'>
+			<label for='ville2'> Ville d'arriv&eacute;e : </label> <select
+				name=ville2 class='champ'>
 		<?php
 	// Listage de toutes les villes
 	$pdo = new MyPdo ();
@@ -40,8 +42,8 @@ if (empty ( $_POST ['ville1'] ) or empty ( $_POST ['ville2'] ) or empty ( $_POST
 		</p>
 
 		<p>
-			<label for='nbKm'>Nombre de Km : </label><input type='number' step="1" name="nbKm"
-				placeholder='Ex : 10' class='champ'>
+			<label for='nbKm'>Nombre de Km : </label><input type='number'
+				step="1" name="nbKm" placeholder='Ex : 10' class='champ'>
 		</p>
 
 		<p>

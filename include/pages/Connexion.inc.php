@@ -43,15 +43,18 @@ if (empty ( $_POST ['reponse'] )) {
 	$connexionOK = $personneManager->testConnexion ( $login, $pass );
 	
 	if ($reponse != $resultat) { // si le captcha est incorrect
-		echo "<img src=\"image/erreur.png\" alt='erreur' /> Le captcha est incorrect<br/>\n";
+		echo "<img src=\"image/erreur.png\" alt='erreur' /> <strong>Le captcha est incorrect</strong>\n";
 		$captcha = false;
 		?>
 <br />
-<strong><a href="index.php?page=11">Reessayer ? </a>
+<strong><a href="index.php?page=11">Reessayer ? <br />
+</a>
 		
 <?php
-		session_destroy ();
-		// pour eviter des erreurs.
+		if (isset ( $_SESSION ['per_login_connecte'] )) {
+			session_destroy ();
+			// pour eviter des erreurs.
+		}
 	} else {
 		$captcha = true;
 		// le captcha est correct
@@ -59,13 +62,16 @@ if (empty ( $_POST ['reponse'] )) {
 	
 	if ($connexionOK == false) { // mauvais mot de passe/identifiant
 		echo "<img src=\"image/erreur.png\" alt='erreur' /> Erreur d'identifiant / mot de passe <br/>\n";
-		?> <strong><a href="index.php?page=11">Reessayer ? </a> <?php
-		session_destroy ();
-		// pour eviter des erreurs.
+		?> <strong><a href="index.php?page=11">Reessayer ?<br /></a> <?php
+		if (isset ( $_SESSION ['per_login_connecte'] )) {
+			session_destroy ();
+			// pour eviter des erreurs.
+		}
+		
 		?>
 <?php
 	}
-	 
+	
 	if (($connexionOK == true) && $captcha == true) { // le captcha est bon et les id/mdp aussi
 		$_SESSION ['per_login_connecte'] = $_POST ['per_login'];
 		$personneConnectee = $personneManager->getPersonneParLogin ( $_SESSION ['per_login_connecte'] );
@@ -74,8 +80,8 @@ if (empty ( $_POST ['reponse'] )) {
 		// var_dump ( $personneConnectee );
 		// echo "<script type='text/javascript'>document.location.replace('./index.php');</script>";
 		?>
-		<h3> Bienvenue <?php echo $_SESSION ["per_prenom_connecte"] ?> ! Vous serez redirig&eacute; dans 3 secondes...</h3>
-		<META HTTP-EQUIV="Refresh" CONTENT="3;URL=index.php">
+		<h3> Bienvenue <?php echo $_SESSION ["per_prenom_connecte"] ?> ! Vous allez &ecirc;tre redirig&eacute;...</h3>
+		<META HTTP-EQUIV="Refresh" CONTENT="2;URL=index.php">
 		<?php
 		/*
 		 * Au final, on dispose de 3 variable de sessions : 1 pour les conditions si on est connecte :

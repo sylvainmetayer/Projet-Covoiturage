@@ -7,7 +7,7 @@ if (empty ( $_POST ['choix_ville'] )) {
 	<form name='choix_ville' id='choix_ville' action='#' method='post'>
 		<p>
 			<label for='choix_ville'>Nom : </label><input type='text'
-				class='bouton' placeholder='Ex : Bordeaux' name='choix_ville'> <input
+				class='champ' placeholder='Ex : Bordeaux' name='choix_ville'> <input
 				type='submit' value='Valider'>
 		</p>
 <?php
@@ -23,10 +23,7 @@ if (empty ( $_POST ['choix_ville'] )) {
 	if ($retour != 0) // OK
 {
 		?>  
-		
-		
-		
-		
+
 		<p>
 			<img src="image/valid.png" alt='valid' /> La ville <b><?php echo $_POST['choix_ville'] ?></b>
 			a &eacute;t&eacute; ajout&eacute;e.

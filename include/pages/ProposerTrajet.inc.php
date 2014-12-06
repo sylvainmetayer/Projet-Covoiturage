@@ -85,35 +85,36 @@ if (! empty ( $_SESSION ['per_login_connecte'] )) {
 		// var_dump ( $propose );
 		// var_dump ( $parcours );
 		// /VARDUMP TEST
-		//$controleDate = $proposeManager->CtrlDate ( $propose->getDate () );
-		//on mock le $controleDate pour forcer le passage, en attendant que la fonction CtrlDate marche
-		$controleDate = true;
+		$controleDate = $proposeManager->CtrlDate ( $propose->getDate () );
+		// on fausse le $controleDate pour forcer le passage, en attendant que la fonction CtrlDate marche
+		// $controleDate = true;
 		if ($controleDate == false) { // date incorrecte
 			?>
 <p>
 	<img src="image/erreur.png" alt='erreur' /> <strong> La date saisie est
-		inf&eacute;rieure &agrave; la date du jour. Le parcours ne peut pas &ecirc;tre ajout&eacute; </strong>
+		inf&eacute;rieure &agrave; la date du jour. Le parcours ne peut pas
+		&ecirc;tre ajout&eacute; </strong>
 </p>
 <?php
 		} else {
-			//on peut ajouter le trajet
-		$resultat = $proposeManager->add ( $propose );
-		if ($resultat != 1) {
-			// On doit controler que seulement 1 propose a été ajouté, sinon, c'est que la requete à plantée.
-			?>
+			// on peut ajouter le trajet
+			$resultat = $proposeManager->add ( $propose );
+			if ($resultat != 1) {
+				// On doit controler que seulement 1 propose a été ajouté, sinon, c'est que la requete a plantée.
+				?>
 <img src="image/erreur.png" alt='erreur' />
 <p>Votre proposition de trajet n'a pas &eacute;t&eacute; ajout&eacute;e.</p>
 
 <?php
-		} else {
-			?>
+			} else {
+				?>
 
 <p>
-<img src="image/valid.png" alt='erreur' />
-Votre proposition de trajet &agrave; &eacute;t&eacute;
-	ajout&eacute;e.</p>
+	<img src="image/valid.png" alt='erreur' /> Votre proposition de trajet
+	&agrave; &eacute;t&eacute; ajout&eacute;e.
+</p>
 <?php
-		}
+			}
 		}
 	}
 	
