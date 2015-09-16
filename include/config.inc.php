@@ -2,12 +2,9 @@
 // Param�tres de l'application Covoiturage
 // A modifier en fonction de la configuration
 define ( 'DBHOST', "localhost" );
-// define ( 'DBNAME', "Covoiturage" );
-// define ( 'DBUSER', "root" );
-// define ( 'DBPASSWD', "" );
 define ( 'DBNAME', "covoiturage" );
-define ( 'DBUSER', "bd" );
-define ( 'DBPASSWD', "bede" );
+define ( 'DBUSER', "covoiturage" );
+define ( 'DBPASSWD', "covoiturage" );
 define ( 'SEL', '48@!alsd' );
 // le grain de sel
 define ( 'ENV', 'dev' );
